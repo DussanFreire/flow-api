@@ -1,0 +1,13 @@
+import { HttpModule } from '@nestjs/axios';
+import { Module } from '@nestjs/common';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
+import { GoogleStrategy } from './auth/google.strategy';
+import { ControllerModule } from './controller/controller.module';
+import { ServiceModule } from './service/service.module';
+@Module({
+  imports: [ControllerModule, ServiceModule],
+  controllers: [AppController],
+  providers: [AppService, GoogleStrategy],
+})
+export class AppModule {}

@@ -1,11 +1,11 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
-import { LoginService } from './login/login.service';
-import { RegisterService } from './register/register.service';
+import { CustomerService } from './register/customer.service';
+import { TokenService } from './token/token.service';
 
 @Module({
   imports: [HttpModule],
-  providers: [LoginService, RegisterService],
-  exports: [LoginService, RegisterService],
+  providers: [TokenService, CustomerService],
+  exports: [TokenService, CustomerService],
 })
 export class ServiceModule {}

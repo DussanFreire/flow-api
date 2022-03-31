@@ -1,11 +1,12 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
+import { HttpException, Injectable } from '@nestjs/common';
 import { map, Observable } from 'rxjs';
 import { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { ConnectionUrl } from 'src/enum/connection.enum';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
-export class RegisterService {
+export class CustomerService {
   constructor(private httpService: HttpService) {}
 
   async createCustomer(
@@ -31,6 +32,9 @@ export class RegisterService {
         map((response) => {
           return response.data;
         }),
+        catchError(e => {
+          throw new HttpException(e.response.data, e.response.status);
+        })
       );
   }
 }

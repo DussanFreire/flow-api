@@ -4,37 +4,49 @@ import { map, Observable } from 'rxjs';
 import { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { ConnectionUrl } from 'src/enum/connection.enum';
 import { catchError } from 'rxjs/operators';
+import { CustomerMagentoDto } from 'src/dto/dto_magento/customer.magento.dto';
+import { CustomerFlowDto } from 'src/dto/dto_flow/customer.flow.dto';
 
 @Injectable()
 export class CustomerService {
   constructor(private httpService: HttpService) {}
 
   async createCustomer(
-    dataCustomer,
-  ): Promise<Observable<AxiosResponse<any, any>>> {
+    dataCustomer: CustomerFlowDto,
+  ): Promise<CustomerFlowDto> {
     const requestConfig: AxiosRequestConfig = {
       headers: {
         Authorization: `Bearer ${ConnectionUrl.ACCESS_TOKEN}`,
       },
     };
-    const obj = {
-      customer: {
-        email: dataCustomer.email,
-        firstname: dataCustomer.firstname,
-        lastname: dataCustomer.lastname,
-        dob: dataCustomer.dob,
-      },
-      password: dataCustomer.password,
+    console.log(dataCustomer);
+    const magentoCostumer = new CustomerMagentoDto();
+
+    const costumer = {
+      firstname: dataCustomer.firstName,
+      email: dataCustomer.email,
+      dob: dataCustomer.dob,
+      lastname: dataCustomer.lastName,
     };
-    return await this.httpService
-      .post(ConnectionUrl.URL + '/customers', obj, requestConfig)
+    magentoCostumer.customer = costumer;
+    magentoCostumer.password = dataCustomer.password;
+
+    return this.httpService
+      .post(ConnectionUrl.URL + '/customers', magentoCostumer, requestConfig)
       .pipe(
         map((response) => {
-          return response.data;
+          const flowCostumer = new CustomerFlowDto(
+            response.data.email,
+            response.data.firstname,
+            response.data.lastname,
+            response.data.dob,
+          );
+          return flowCostumer;
         }),
-        catchError(e => {
+        catchError((e) => {
           throw new HttpException(e.response.data, e.response.status);
-        })
-      );
+        }),
+      )
+      .toPromise();
   }
 }

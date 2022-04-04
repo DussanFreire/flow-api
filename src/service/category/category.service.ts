@@ -9,7 +9,7 @@ export class CategoryService {
     constructor(private httpService: HttpService){}
     async getCategories(){
     return this.httpService
-      .post<TokenMagentoDto>(
+      .get<TokenMagentoDto>(
         ConnectionUrl.URL + '/categories'
       )
       .pipe(

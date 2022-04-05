@@ -48,17 +48,24 @@ export class CustomerService {
       )
       .toPromise();
   }
- async getInfo(token : string): Promise<AxiosResponse> {
+ async getInfo(token : string): Promise<CustomerFlowDto> {
   const requestConfig: AxiosRequestConfig = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
+  
   return this.httpService
       .get(ConnectionUrl.URL + '/customers/me', requestConfig)
       .pipe(
         map((response) => {
-          return response.data;
+          const flowCostumer = new CustomerFlowDto(
+            response.data.email,
+            response.data.firstname,
+            response.data.lastname,
+            response.data.dob,
+          );
+          return flowCostumer;
         }),
         catchError((e) => {
           throw new HttpException(e.response.data, e.response.status);

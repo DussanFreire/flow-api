@@ -22,13 +22,11 @@ export class CategoryService {
       }),
     )
     .toPromise();
-    console.log(resp);
-    console.log("**************************");
-    console.log(resp.token);
-    const sort = eval(resp.token).sort(function(a, b) {
-      return a.name - b.name;
+    const sort = resp.token.sort(function(a, b) {
+      return a['id'] - b['id'];
     });
-    let actives = eval(sort).filter(item => item.is_active == true);
+    let actives = sort.filter(item => item['is_active'] == true);
     return JSON.stringify(actives,['id','name','is_active','children_data']);
+    
   }
 }

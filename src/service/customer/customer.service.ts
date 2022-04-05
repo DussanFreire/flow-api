@@ -19,7 +19,6 @@ export class CustomerService {
         Authorization: `Bearer ${ConnectionUrl.ACCESS_TOKEN}`,
       },
     };
-    console.log(dataCustomer);
     const magentoCostumer = new CustomerMagentoDto();
 
     const costumer = {
@@ -49,4 +48,22 @@ export class CustomerService {
       )
       .toPromise();
   }
+ async getInfo(token : string): Promise<AxiosResponse> {
+  const requestConfig: AxiosRequestConfig = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  return this.httpService
+      .get(ConnectionUrl.URL + '/customers/me', requestConfig)
+      .pipe(
+        map((response) => {
+          return response.data;
+        }),
+        catchError((e) => {
+          throw new HttpException(e.response.data, e.response.status);
+        }),
+      )
+      .toPromise();
+ }
 }

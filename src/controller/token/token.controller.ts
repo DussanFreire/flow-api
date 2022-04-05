@@ -8,8 +8,6 @@ export class TokenController {
 
   @Post()
   async getToken(@Body() loginData: LoginFlowDto) {
-    console.log(loginData);
-
     return await this.loginService.getToken(loginData);
   }
 }

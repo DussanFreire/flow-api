@@ -6,6 +6,7 @@ export class CategoryController {
     constructor(private categoyService: CategoryService){}
     @Get()
     async getCategories(){
-        return this.categoyService.getCategories();
+        const categoria = this.categoyService.getCategories()
+        return (await categoria);
     }
 }

@@ -1,9 +1,9 @@
 import { IsNotEmpty, IsString } from 'class-validator';
 
 export class TokenMagentoDto {
-  token: Array<object>;
+  token: string;
 
-  constructor(token: Array<object>) {
+  constructor(token: string) {
     this.token = token;
   }
 }

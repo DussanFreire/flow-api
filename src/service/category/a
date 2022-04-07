@@ -1,0 +1,102 @@
+[{"id":3,"name":"Lo Nuevo","is_active":true,"children_data":[{"id":570,"name":"Precios de
+Locura","is_active":true,"children_data":[]}]},{"id":10,"name":"Belleza y Cuidado
+Personal","is_active":true,"children_data":[{"id":58,"name":"Accesorios de
+Belleza","is_active":true,"children_data":[{"id":143,"name":"Artículos de
+Belleza","is_active":true,"children_data":[]},{"id":68,"name":"Kits de
+Belleza","is_active":true,"children_data":[]}]},{"id":46,"name":"Cosméticos","is_active":true,"children_data":[{"id":179,"name":"Cejas","is_active":true,"children_data":[{"id":180,"name":"Delineador
+de Cejas","is_active":true,"children_data":[]},{"id":181,"name":"Máscara de
+Cejas","is_active":true,"children_data":[]}]},{"id":48,"name":"Labios","is_active":true,"children_data":[{"id":146,"name":"Bálsamos","is_active":true,"children_data":[]},{"id":145,"name":"Delineadores
+Labiales","is_active":true,"children_data":[]},{"id":147,"name":"Labiales","is_active":true,"children_data":[]}]},{"id":49,"name":"Ojos","is_active":true,"children_data":[{"id":172,"name":"Delineador
+de Ojos","is_active":true,"children_data":[]},{"id":205,"name":"Máscara de
+Pestañas","is_active":true,"children_data":[]},{"id":178,"name":"Pestañas
+Postizas","is_active":true,"children_data":[]},{"id":171,"name":"Sombras","is_active":true,"children_data":[]}]},{"id":47,"name":"Rostro","is_active":true,"children_data":[{"id":174,"name":"Bases","is_active":true,"children_data":[]},{"id":317,"name":"BB
+Cream","is_active":true,"children_data":[]},{"id":319,"name":"Contorneadores","is_active":true,"children_data":[]},{"id":173,"name":"Correctores","is_active":true,"children_data":[]},{"id":182,"name":"Iluminadores","is_active":true,"children_data":[]},{"id":177,"name":"Polvos","is_active":true,"children_data":[]},{"id":175,"name":"Primer","is_active":true,"children_data":[]},{"id":176,"name":"Rubor","is_active":true,"children_data":[]}]}]},{"id":63,"name":"Cuidado
+de Cabello","is_active":true,"children_data":[{"id":316,"name":"Coloración de
+Cabello","is_active":true,"children_data":[]},{"id":237,"name":"Crema para
+Peinar","is_active":true,"children_data":[]},{"id":238,"name":"Shampoo y
+Acondicionador","is_active":true,"children_data":[]},{"id":235,"name":"Tratamientos
+Capilares","is_active":true,"children_data":[]}]},{"id":50,"name":"Cuidado de
+Piel","is_active":true,"children_data":[{"id":52,"name":"Cuerpo","is_active":true,"children_data":[{"id":65,"name":"Cremas
+Corporales","is_active":true,"children_data":[]},{"id":66,"name":"Jabones
+Corporales","is_active":true,"children_data":[]},{"id":67,"name":"Gel para
+Ducha","is_active":true,"children_data":[]},{"id":69,"name":"Exfoliantes
+Corporales","is_active":true,"children_data":[]}]},{"id":64,"name":"Ojos","is_active":true,"children_data":[]},{"id":51,"name":"Rostro","is_active":true,"children_data":[{"id":138,"name":"Anti
+Edad","is_active":true,"children_data":[]},{"id":139,"name":"Anti
+Manchas","is_active":true,"children_data":[]},{"id":60,"name":"Cremas e
+Hidratantes","is_active":true,"children_data":[]},{"id":59,"name":"Limpieza
+Rostro","is_active":true,"children_data":[]},{"id":61,"name":"Mascarillas y
+Parches","is_active":true,"children_data":[]},{"id":315,"name":"Packs
+Tratamientos","is_active":true,"children_data":[]},{"id":137,"name":"Protector
+Solar","is_active":true,"children_data":[]}]}]},{"id":231,"name":"Cuidado
+Personal","is_active":true,"children_data":[{"id":233,"name":"Cuidado de
+Boca","is_active":true,"children_data":[]},{"id":232,"name":"Desodorantes y Antitranspirantes
+","is_active":true,"children_data":[]},{"id":350,"name":"Higiene","is_active":true,"children_data":[]},{"id":234,"name":"Rasurado
+y Depilación","is_active":true,"children_data":[]}]},{"id":424,"name":"Electro
+Belleza","is_active":true,"children_data":[{"id":427,"name":"Bucleadoras","is_active":true,"children_data":[]},{"id":428,"name":"Máquinas
+de Afeitar","is_active":true,"children_data":[]},{"id":425,"name":"Planchas de
+Cabello","is_active":true,"children_data":[]},{"id":426,"name":"Secadoras","is_active":true,"children_data":[]}]},{"id":56,"name":"Pies,
+Manos y Uñas ","is_active":true,"children_data":[{"id":72,"name":"Crema para
+Manos","is_active":true,"children_data":[]},{"id":415,"name":"Desinfectantes y
+Sanitizantes","is_active":true,"children_data":[]},{"id":57,"name":"Esmaltes","is_active":true,"children_data":[]},{"id":74,"name":"Jabón
+de Manos
+","is_active":true,"children_data":[]}]},{"id":53,"name":"Perfumería","is_active":true,"children_data":[{"id":54,"name":"Mujeres","is_active":true,"children_data":[{"id":141,"name":"Body
+Splash","is_active":true,"children_data":[]},{"id":140,"name":"Perfumes","is_active":true,"children_data":[]}]},{"id":55,"name":"Hombres","is_active":true,"children_data":[{"id":142,"name":"Perfumes","is_active":true,"children_data":[]}]}]}]},{"id":11,"name":"Hogar
+y Cocina","is_active":true,"children_data":[{"id":16,"name":"Almacenamiento y
+Organización","is_active":true,"children_data":[{"id":423,"name":"Basureros","is_active":true,"children_data":[]}]},{"id":465,"name":"Hidrolavadoras","is_active":true,"children_data":[]},{"id":250,"name":"Churrasco","is_active":true,"children_data":[]},{"id":482,"name":"Electrodomésticos","is_active":true,"children_data":[{"id":539,"name":"Aspiradoras","is_active":true,"children_data":[]},{"id":488,"name":"Batidoras","is_active":true,"children_data":[]},{"id":484,"name":"Cafeteras
+y Moledoras","is_active":true,"children_data":[]},{"id":485,"name":"Hervidores
+Eléctricos","is_active":true,"children_data":[]},{"id":483,"name":"Licuadoras y
+Exprimidores","is_active":true,"children_data":[]},{"id":486,"name":"Planchas","is_active":true,"children_data":[]},{"id":490,"name":"Procesadora
+de
+Alimentos","is_active":true,"children_data":[]},{"id":487,"name":"Tostadores","is_active":true,"children_data":[]}]},{"id":13,"name":"Cocina
+y Mesa","is_active":true,"children_data":[{"id":296,"name":"Calderas y
+Hervidores","is_active":true,"children_data":[]},{"id":563,"name":"Cocinas","is_active":true,"children_data":[]},{"id":248,"name":"Cubiertos","is_active":true,"children_data":[]},{"id":260,"name":"Cubiertos
+Infantiles","is_active":true,"children_data":[]},{"id":295,"name":"Cuchillos","is_active":true,"children_data":[]},{"id":422,"name":"Moldes","is_active":true,"children_data":[]},{"id":255,"name":"Ollas","is_active":true,"children_data":[]},{"id":259,"name":"Sacacorchos
+y
+Abridores","is_active":true,"children_data":[]},{"id":256,"name":"Sartenes","is_active":true,"children_data":[{"id":291,"name":"Wok","is_active":true,"children_data":[]},{"id":292,"name":"Paelleras","is_active":true,"children_data":[]},{"id":293,"name":"Bifera","is_active":true,"children_data":[]},{"id":294,"name":"Sartenes","is_active":true,"children_data":[]}]},{"id":300,"name":"Termos
+y
+Botellones","is_active":true,"children_data":[]},{"id":258,"name":"Utensilios","is_active":true,"children_data":[]}]},{"id":257,"name":"Vajilla
+y Cristalería","is_active":true,"children_data":[{"id":299,"name":"Accesorios de
+Cocina","is_active":true,"children_data":[]},{"id":412,"name":"Cristalería","is_active":true,"children_data":[{"id":414,"name":"Bandejas
+y Tazones","is_active":true,"children_data":[]},{"id":413,"name":"Vasos y
+Copas","is_active":true,"children_data":[]}]},{"id":298,"name":"Juegos de Té y
+Café","is_active":true,"children_data":[]}]}]},{"id":17,"name":"Alimentos y
+Bebidas","is_active":true,"children_data":[{"id":19,"name":"Abarrotes","is_active":true,"children_data":[]},{"id":18,"name":"Productos
+Gourmet","is_active":true,"children_data":[]},{"id":21,"name":"Snacks","is_active":true,"children_data":[{"id":261,"name":"Papas
+Fritas","is_active":true,"children_data":[]},{"id":262,"name":"Frutos
+Secos/Deshidratados","is_active":true,"children_data":[]},{"id":263,"name":"Piqueos","is_active":true,"children_data":[]}]},{"id":246,"name":"Café&#44;
+Té y Bebidas","is_active":true,"children_data":[{"id":281,"name":"Bebidas en
+Polvo","is_active":true,"children_data":[]},{"id":282,"name":"Café","is_active":true,"children_data":[]},{"id":283,"name":"Tés
+y Mates","is_active":true,"children_data":[]}]},{"id":23,"name":"Cereales y
+Galletas","is_active":true,"children_data":[{"id":286,"name":"Avena","is_active":true,"children_data":[]},{"id":287,"name":"Barritas","is_active":true,"children_data":[]},{"id":284,"name":"Cereales
+Dulces","is_active":true,"children_data":[]},{"id":285,"name":"Cereales
+Naturales","is_active":true,"children_data":[]},{"id":289,"name":"Galletas","is_active":true,"children_data":[]}]},{"id":24,"name":"Despensa","is_active":true,"children_data":[{"id":271,"name":"Aceites
+y Vinagres","is_active":true,"children_data":[]},{"id":269,"name":"Aderezos y
+Saborizantes","is_active":true,"children_data":[]},{"id":265,"name":"Enlatados y
+Conservas","is_active":true,"children_data":[]},{"id":264,"name":"Mermeladas y
+Dulces","is_active":true,"children_data":[]},{"id":318,"name":"Miel y
+Edulcorantes","is_active":true,"children_data":[]},{"id":268,"name":"Premezclas","is_active":true,"children_data":[]},{"id":272,"name":"Sal
+y Condimentos","is_active":true,"children_data":[]},{"id":266,"name":"Sopas y
+Cremas","is_active":true,"children_data":[]}]},{"id":25,"name":"Dulces y
+Chocolates","is_active":true,"children_data":[]},{"id":267,"name":"Repostería","is_active":true,"children_data":[]}]},{"id":26,"name":"Electrónicos","is_active":true,"children_data":[{"id":479,"name":"Agendas
+Digitales","is_active":true,"children_data":[]},{"id":28,"name":"Audífonos","is_active":true,"children_data":[]},{"id":478,"name":"Balanzas","is_active":true,"children_data":[{"id":540,"name":"Balanzas
+de Baño","is_active":true,"children_data":[]}]},{"id":29,"name":"Celulares y
+Accesorios","is_active":true,"children_data":[]},{"id":27,"name":"Computadoras y
+Accesorios","is_active":true,"children_data":[{"id":37,"name":"Accesorios para
+Computadoras","is_active":true,"children_data":[{"id":480,"name":"Mouse","is_active":true,"children_data":[]},{"id":481,"name":"Teclados","is_active":true,"children_data":[]}]},{"id":39,"name":"Almacenamiento
+de Datos","is_active":true,"children_data":[]},{"id":469,"name":"Cables de
+Conexión","is_active":true,"children_data":[]},{"id":43,"name":"Cámaras
+Web","is_active":true,"children_data":[]},{"id":34,"name":"Computadoras de
+Escritorio","is_active":true,"children_data":[]},{"id":541,"name":"Consumibles","is_active":true,"children_data":[{"id":542,"name":"Tintas","is_active":true,"children_data":[]}]},{"id":42,"name":"Escáneres","is_active":true,"children_data":[]},{"id":41,"name":"Impresoras","is_active":true,"children_data":[]},{"id":33,"name":"Laptops","is_active":true,"children_data":[]},{"id":44,"name":"Mochilas
+y
+Maletines","is_active":true,"children_data":[]},{"id":35,"name":"Monitores","is_active":true,"children_data":[]},{"id":38,"name":"Redes
+y Conexión
+Inalámbrica","is_active":true,"children_data":[]},{"id":476,"name":"Servidores","is_active":true,"children_data":[]},{"id":36,"name":"Tablets","is_active":true,"children_data":[]}]},{"id":40,"name":"Parlantes
+y Altavoces","is_active":true,"children_data":[]},{"id":236,"name":"Pilas y
+Baterías","is_active":true,"children_data":[]},{"id":45,"name":"Proyectores","is_active":true,"children_data":[]},{"id":477,"name":"Relojes
+Inteligentes","is_active":true,"children_data":[]},{"id":31,"name":"Videojuegos","is_active":true,"children_data":[]}]},{"id":302,"name":"Herramientas","is_active":true,"children_data":[{"id":306,"name":"Juego
+de Herramientas","is_active":true,"children_data":[]}]},{"id":421,"name":"Gift
+Cards","is_active":true,"children_data":[]},{"id":571,"name":"Precios de
+Locura","is_active":true,"children_data":[]},{"id":572,"name":"Bebé","is_active":true,"children_data":[]},{"id":573,"name":"Mascotas","is_active":true,"children_data":[]},{"id":574,"name":"Material
+de
+Escritorio","is_active":true,"children_data":[]},{"id":575,"name":"Bioseguridad","is_active":true,"children_data":[]},{"id":577,"name":"Ofertas
+del Mes","is_active":true,"children_data":[]}]

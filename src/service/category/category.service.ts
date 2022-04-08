@@ -12,41 +12,15 @@ export class CategoryService {
     const categoriesActive = categories.filter((c) => c.is_active);
     if (categoriesActive.length > 0) {
       categoriesActive.map((c) => {
+        if (c.name === 'Café&#44; Té y Bebidas') {
+          c.name = 'Café, Té y Bebidas';
+        }
         c.children_data = this.filterByActiveCateogries(c.children_data);
       });
     }
     return categoriesActive;
   }
-  private CategoriesOrder: string[] = [
-    'Electrónicos',
-    'Alimentos y Bebidas',
-    'Belleza y Cuidado Personal',
-    'Bebé',
-    'Bioseguridad',
-    'Hogar y Cocina',
-    'Herramientas',
-    'Libros',
-    'Mascotas',
-    'Meterial de Escritorio',
-    'Moda',
-    'Juguetes',
-    'Lo Nuevo',
-    'Precios de Locura',
-    'Gift Cards',
-  ];
-
-  private sortCategoties(
-    categories: CategoryDtoMagento[],
-  ): CategoryDtoMagento[] {
-    const listSorted: CategoryListMagentoDto = new CategoryListMagentoDto([]);
-    for (let index = 0; index < this.CategoriesOrder.length; index++) {
-      const category = categories.filter(
-        (c) => c.name === this.CategoriesOrder[index],
-      );
-      if (category.length > 0) listSorted.categoryList.push(category[0]);
-    }
-    return listSorted.categoryList;
-  }
+  
   public async getCategories() {
     const categories = await this.httpService
       .get<CategoryListMagentoDto>(ConnectionUrl.URL + '/categories')
@@ -62,11 +36,10 @@ export class CategoryService {
       .toPromise();
 
     const filteredCategories = this.filterByActiveCateogries(
-      categories.categoryList,
+      categories.categoryList.filter((c) => c.name != 'Lo Nuevo'),
     );
 
-    const sortedCategories = this.sortCategoties(filteredCategories);
-    return JSON.stringify(sortedCategories, [
+    return JSON.stringify(filteredCategories, [
       'id',
       'name',
       'is_active',

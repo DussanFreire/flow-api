@@ -5,7 +5,7 @@ import { ProductService } from 'src/service/product/product.service';
 export class ProductController {
     constructor(private productService: ProductService){}
     @Get()
-    async getCategories(@Body('id') id:number){
+    async getCategories(@Body('id') id: number){
         const products = this.productService.getProductByCategoryID(id)
         return (await products);
     }

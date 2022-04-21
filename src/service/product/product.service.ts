@@ -1,6 +1,6 @@
 import { ConnectionUrl, FilterProducts } from 'src/enum/connection.enum';
 import { HttpService } from '@nestjs/axios';
-import { HttpException, Injectable, Res } from '@nestjs/common';
+import { HttpException, Injectable, Logger, Res } from '@nestjs/common';
 import { catchError, map } from 'rxjs';
 import { CategoryDtoMagento } from 'src/dto/dto_magento/category.magento.dto';
 import { CategoryListMagentoDto } from 'src/dto/dto_magento/category_list.magento.dto';
@@ -22,12 +22,21 @@ export class ProductService {
             }),
           )
           .toPromise();
-          return JSON.stringify(products.productList, [
-              'id',
-              'sku',
-              'name',
-              'price'
-            ]);
+          const filteredCategories = 
+          products.productList.filter((c) => c.status != 2
+          );
+          const respo = JSON.stringify(filteredCategories, [
+            'id',
+            'sku',
+            'name',
+            'price',
+            'status',
+            'tier_prices',
+            'media_gallery_entries',
+            'label',
+            'position',
+            'file'
+          ]);
+          return respo;
       }
-      
 }

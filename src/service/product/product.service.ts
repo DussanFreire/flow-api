@@ -25,13 +25,16 @@ export class ProductService {
           const filteredCategories = 
           products.productList.filter((c) => c.status != 2
           );
+          filteredCategories.forEach(function (element) {
+            element.discount = 0;
+          });
           const respo = JSON.stringify(filteredCategories, [
             'id',
             'sku',
             'name',
             'price',
             'status',
-            'tier_prices',
+            'discount',
             'media_gallery_entries',
             'label',
             'position',

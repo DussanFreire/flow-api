@@ -7,10 +7,11 @@ export class ProductMagentoDto {
     name: string;
     price: number;
     status:  number;
-    tier_prices: Array<string>;
+    discount: number;
     media_gallery_entries: Array<ProductImageMagentoDto>;
     
     constructor(Media_gallery_entries: Array<object>) {
         this.media_gallery_entries = Object.assign(Media_gallery_entries);
+        this.discount = 0;
     }
 }

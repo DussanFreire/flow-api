@@ -4,5 +4,6 @@ export enum ConnectionUrl {
 }
 
 export enum FilterProducts{
+  IMAGE_URL = 'https://staging-vdt2zeq-emnitew26jfx2.us-5.magentosite.cloud/media/catalog/product',
   PRODUCTS_CATEGORY_ID = '/products?searchCriteria[filter_groups][0][filters][0][field]=category_id&searchCriteria[filter_groups][0][filters][0][value]='
 }

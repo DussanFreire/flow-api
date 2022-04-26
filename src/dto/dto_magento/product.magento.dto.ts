@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { ProductAtributes } from './product.atribute.magento.dto';
 import { ProductImageMagentoDto } from './product.image.magento.dto';
 
 export class ProductMagentoDto {
@@ -7,11 +8,10 @@ export class ProductMagentoDto {
     name: string;
     price: number;
     status:  number;
-    discount: number;
     media_gallery_entries: Array<ProductImageMagentoDto>;
-    
-    constructor(Media_gallery_entries: Array<object>) {
+    custom_attributes: Array<ProductAtributes>;
+    constructor(Media_gallery_entries: Array<object>, Custom_attributes: Array<ProductAtributes>) {
         this.media_gallery_entries = Object.assign(Media_gallery_entries);
-        this.discount = 0;
+        this.custom_attributes = Object.assign(Custom_attributes);
     }
 }

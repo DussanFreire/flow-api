@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs';
 import { CategoryDtoMagento } from 'src/dto/dto_magento/category.magento.dto';
 import { CategoryListMagentoDto } from 'src/dto/dto_magento/category_list.magento.dto';
 import { ProductListMagentoDto } from 'src/dto/dto_magento/product_list.magento.dto';
+import { json } from 'stream/consumers';
 
 @Injectable()
 export class ProductService {
@@ -25,21 +26,27 @@ export class ProductService {
           const filteredCategories = 
           products.productList.filter((c) => c.status != 2
           );
-          filteredCategories.forEach(function (element) {
-            element.discount = 0;
-          });
-          const respo = JSON.stringify(filteredCategories, [
+          let respo = JSON.stringify(filteredCategories, [
             'id',
             'sku',
             'name',
             'price',
             'status',
-            'discount',
             'media_gallery_entries',
             'label',
             'position',
-            'file'
+            'file',
+            'custom_attributes',
+            'attribute_code',
+            'value'
+
           ]);
-          return respo;
-      }
+          const prueba = JSON.parse(respo);
+          prueba.forEach(function(data) {
+            data.media_gallery_entries.forEach(function(data) {
+              data.file = FilterProducts.IMAGE_URL + data.file;
+            });
+          });
+          return prueba;
+  } 
 }

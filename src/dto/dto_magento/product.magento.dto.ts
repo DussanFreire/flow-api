@@ -8,10 +8,7 @@ export class ProductMagentoDto {
     name: string;
     price: number;
     status:  number;
-    media_gallery_entries: Array<ProductImageMagentoDto>;
-    custom_attributes: Array<ProductAtributes>;
-    constructor(Media_gallery_entries: Array<object>, Custom_attributes: Array<ProductAtributes>) {
-        this.media_gallery_entries = Object.assign(Media_gallery_entries);
-        this.custom_attributes = Object.assign(Custom_attributes);
-    }
+    image_url: string;
+    special_price: string;
+    description: string;
 }

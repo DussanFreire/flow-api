@@ -7,11 +7,12 @@ import { CategoryListMagentoDto } from 'src/dto/dto_magento/category_list.magent
 import { ProductListMagentoDto } from 'src/dto/dto_magento/product_list.magento.dto';
 import { json } from 'stream/consumers';
 import { ProductMagentoDto } from 'src/dto/dto_magento/product.magento.dto';
+import { PaginateService } from '../paginate/paginate.service';
 
 @Injectable()
 export class ProductService {
-    constructor(private httpService: HttpService) {}
-    public async getProductByCategoryID(idcategory: number) {
+    constructor(private httpService: HttpService, private paginateService: PaginateService) {}
+    public async getProductByCategoryID(idcategory: number, page: number, limit: number) {
         const products =  await this.httpService
           .get(ConnectionUrl.URL + FilterProducts.PRODUCTS_CATEGORY_ID + idcategory)
           .pipe(
@@ -29,7 +30,7 @@ export class ProductService {
           let imageUrl;
           let special_price;
           let description;
-          prueba.forEach(function(data) {
+          filteredCategories.forEach(function(data) {
             data.custom_attributes.forEach(function(data){
               if(data.attribute_code == 'special_price'){
                 special_price = data.value;
@@ -60,6 +61,6 @@ export class ProductService {
             }
             respuesta.productList.push(info)
           });
-          return respuesta.productList;
+          return await this.paginateService.paginatedResults(respuesta.productList,page,limit);
   } 
 }

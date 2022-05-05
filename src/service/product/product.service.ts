@@ -1,6 +1,6 @@
 import { ConnectionUrl, FilterProducts } from 'src/enum/connection.enum';
 import { HttpService } from '@nestjs/axios';
-import { HttpException, Injectable, Logger, Res } from '@nestjs/common';
+import { CACHE_MANAGER, HttpException, Inject, Injectable, Logger, Res } from '@nestjs/common';
 import { catchError, map } from 'rxjs';
 import { CategoryDtoMagento } from 'src/dto/dto_magento/category.magento.dto';
 import { CategoryListMagentoDto } from 'src/dto/dto_magento/category_list.magento.dto';
@@ -8,12 +8,19 @@ import { ProductListMagentoDto } from 'src/dto/dto_magento/product_list.magento.
 import { json } from 'stream/consumers';
 import { ProductMagentoDto } from 'src/dto/dto_magento/product.magento.dto';
 import { PaginateService } from '../paginate/paginate.service';
+import { Cache } from 'cache-manager';
 
 @Injectable()
 export class ProductService {
-    constructor(private httpService: HttpService, private paginateService: PaginateService) {}
-    public async getProductByCategoryID(idcategory: number, page: number, limit: number) {
-        const products =  await this.httpService
+    constructor(private httpService: HttpService,
+                private paginateService: PaginateService,
+                @Inject(CACHE_MANAGER) private cacheManager: Cache) {}
+    public async getProductByCategoryID(idcategory: number, page: number) {
+      const numberCache = await this.cacheManager.get<number>('id_item')
+      const respuesta = new ProductListMagentoDto([]);
+        if(numberCache != idcategory){
+          this.cacheManager.set<number>('id_item',idcategory, {ttl:60})
+          const products =  await this.httpService
           .get(ConnectionUrl.URL + FilterProducts.PRODUCTS_CATEGORY_ID + idcategory)
           .pipe(
             map((response: any) => response.data.items ),
@@ -25,8 +32,6 @@ export class ProductService {
           let filteredCategories = 
           (products).filter((c) => c.status != 2
           );
-          const respuesta = new ProductListMagentoDto([]);
-          let prueba = filteredCategories;
           let imageUrl;
           let special_price;
           let description;
@@ -61,6 +66,9 @@ export class ProductService {
             }
             respuesta.productList.push(info)
           });
-          return await this.paginateService.paginatedResults(respuesta.productList,page,limit);
+          this.cacheManager.set<ProductListMagentoDto>('cache_item',respuesta, {ttl: 60})
+        }
+        const res = (await this.cacheManager.get<ProductListMagentoDto>('cache_item')).productList
+        return this.paginateService.paginatedResults(res,page);
   } 
 }

@@ -7,12 +7,7 @@ import { ControllerModule } from './controller/controller.module';
 import { ServiceModule } from './service/service.module';
 import { PaginateService } from './service/paginate/paginate.service';
 @Module({
-  imports: [ControllerModule, ServiceModule,
-    CacheModule.register({
-      isGlobal: true,
-      ttl: 20,
-      max: 150
-})],
+  imports: [ControllerModule, ServiceModule],
   controllers: [AppController],
   providers: [AppService, GoogleStrategy, PaginateService],
 })

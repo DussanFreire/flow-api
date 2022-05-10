@@ -1,4 +1,5 @@
 import { Body, CacheInterceptor, Controller, Get, Param, Query, UseInterceptors } from '@nestjs/common';
+import { ProductFilterMagentoDto } from 'src/dto/dto_magento/product.filter.magento.dto';
 import { ProductService } from 'src/service/product/product.service';
 
 @Controller('products')
@@ -7,8 +8,7 @@ export class ProductController {
     
     @Get()
     async getCategories(
-        @Query('categoryId') category_id: number,
-        @Query('page') page: number){
-            return await this.productService.getProductByCategoryID(category_id, page)
+        @Query() request: ProductFilterMagentoDto){
+            return await this.productService.getProductByCategoryID(request)
         }
 }

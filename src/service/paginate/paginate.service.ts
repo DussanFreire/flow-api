@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PaginationConfig } from 'src/enum/pagination.enum';
+import { PaginationConfig } from 'src/enum/filter.serch.enum';
 
 @Injectable()
 export class PaginateService {
@@ -7,7 +7,7 @@ export class PaginateService {
     public async paginatedResults(model, _page) {
         
           const page = _page
-          const limit = PaginationConfig.limit;
+          const limit = PaginationConfig.LIMIT;
 
           const startIndex = (parseInt(page) - 1) * limit;
           const endIndex = parseInt(page) * limit;

@@ -8,8 +8,15 @@ export class ProductFilterMagentoDto {
     page: number;
     @IsOptional()
     @IsIn([SortConfig.SORT_BY_NAME, SortConfig.SORT_BY_PRICE, SortConfig.SORT_BY_BRAND, SortConfig.SORT_BY_WEIGHT])
-    sort: SortConfig;
+    sort: SortConfig.SORT_BY_NAME;
     @IsOptional()
     @IsIn([SortDirection.DIRECTION_ASC, SortDirection.DIRECTION_DESC])
-    sortDirection: SortDirection;
+    sortDirection: SortDirection.DIRECTION_ASC;
+
+    @IsOptional()
+    brandIdFilter: number;
+    @IsOptional()
+    highPriceFilter: number;
+    @IsOptional()
+    lowPriceFilter: number;
 }

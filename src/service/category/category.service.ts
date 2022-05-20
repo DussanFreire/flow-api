@@ -34,11 +34,15 @@ export class CategoryService {
         }),
       )
       .toPromise();
-
     const filteredCategories = this.filterByActiveCateogries(
       categories.categoryList.filter((c) => c.name != 'Lo Nuevo'),
     );
-
-    return filteredCategories;
+    return JSON.stringify(filteredCategories, [
+      'id',
+      'name',
+      'is_active',
+      'children_data',
+    ]);
   }
+  public getchildcategories(categoryId) {}
 }

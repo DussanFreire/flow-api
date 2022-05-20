@@ -4,11 +4,16 @@ import { ProductService } from 'src/service/product/product.service';
 
 @Controller('products')
 export class ProductController {
-    constructor(private productService: ProductService){}
-    
+    constructor(private productService: ProductService) { }
+
     @Get()
     async getCategories(
-        @Query() request: ProductFilterMagentoDto){
-            return await this.productService.getProductByCategoryID(request)
-        }
+        @Query() request: ProductFilterMagentoDto) {
+        return await this.productService.getProductByCategoryID(request)
+    }
+    @Get('brands')
+    async getBrandFromBranId(
+        @Body('request') request: Array<number>) {
+        return await this.productService.getBrandFromBrandId(request)
+    }
 }

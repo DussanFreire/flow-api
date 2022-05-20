@@ -9,4 +9,10 @@ export enum FilterProducts{
   PRODUCT_CATEGORY_SORT_DIRECTION = '&searchCriteria[sortOrders][1][direction]=',
   PRODUCT_CATEGORY_CURRENT_PAGE = '&searchCriteria[currentPage]=',
   PRODUCT_CATEGORY_PAGE_SIZE = '&searchCriteria[pageSize]=',
+  PRODUCT_CATEGORY_BRAND = '&searchCriteria[filter_groups][1][filters][0][field]=brand&searchCriteria[filter_groups][1][filters][0][value]=',
+  PRODUCT_CATEGORY_PRICE_HIGH = '&searchCriteria[filter_groups][2][filters][0][field]=price&searchCriteria[filter_groups][2][filters][0][value]=',
+  PRODUCT_CATEGORY_PRICE_LOW = '&searchCriteria[filter_groups][2][filters][0][condition_type]=from&searchCriteria[filter_groups][3][filters][0][field]=price&searchCriteria[filter_groups][3][filters][0][value]=',
+  PRODUCT_CATEGORY_PRICE_TO = '&searchCriteria[filter_groups][3][filters][0][condition_type]=to',
+  PRODUCT_BRAND = '/products/attributes/brand/options',
+
 }

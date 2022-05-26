@@ -9,6 +9,7 @@ import { catchError, filter, map } from 'rxjs';
 import { UserInfoFlowDto } from 'src/dto/dto_flow/user_info.flow.dto';
 import { UserAddressFlowDto } from 'src/dto/dto_flow/user_address.flow';
 import { UserAddressMagentoDto } from 'src/dto/dto_magento/user_address.magento.dto';
+import { UserAddressesFlowDto } from 'src/dto/dto_flow/user_addresses.flow.dto';
 
 @Injectable()
 export class MeService {
@@ -25,11 +26,11 @@ export class MeService {
       this.getUserId(token),
     ];
     const [categories, cart, user_info] = await Promise.all(loginPromises);
-    const items_count = (cart as CartFlowDto).cart.items_count;
+    const items_qty = (cart as CartFlowDto).cart.items_qty;
     const cart_id = (cart as CartFlowDto).cart.id;
     const cart_info = {
       cart_id,
-      items_count,
+      items_qty,
     };
 
     return { cart_info, user_info, categories };
@@ -37,14 +38,14 @@ export class MeService {
 
   async getUserAddressesInBolivia(
     costumerId: string,
-  ): Promise<UserAddressFlowDto[]> {
+  ): Promise<UserAddressesFlowDto> {
     const requestConfig: AxiosRequestConfig = {
       headers: {
         Authorization: costumerId,
       },
     };
-
-    const addresses: UserAddressFlowDto[] = await this.httpService
+    const addresses = new UserAddressesFlowDto();
+    addresses.addresses = await this.httpService
       .get<UserAddressMagentoDto>(
         ConnectionUrl.URL + '/customers/me',
         requestConfig,
@@ -59,6 +60,7 @@ export class MeService {
             const addressFlowDto: UserAddressFlowDto = new UserAddressFlowDto();
 
             addressFlowDto.id = addressMagentoDto.id;
+            addressFlowDto.name = `${addressMagentoDto.firstname} ${addressMagentoDto.lastname}`;
             addressFlowDto.telephone = addressMagentoDto.telephone;
             addressFlowDto.city = addressMagentoDto.city;
             addressFlowDto.street = addressMagentoDto.street;

@@ -1,6 +1,6 @@
 import { HttpService } from '@nestjs/axios';
-import { HttpException, Injectable, Res } from '@nestjs/common';
-import { catchError, forkJoin, map, of } from 'rxjs';
+import { HttpException, Injectable } from '@nestjs/common';
+import { catchError, map, of } from 'rxjs';
 import { AxiosRequestConfig } from 'axios';
 import { CartMagentoDto } from 'src/dto/dto_magento/cart_product.magento.dto';
 import { CartFlowProductDto } from 'src/dto/dto_flow/cart_product.flow.dto';
@@ -13,6 +13,7 @@ import { CartTotalFlowDto } from 'src/dto/dto_flow/cart_totals.flow.dto';
 @Injectable()
 export class CartService {
   constructor(private httpService: HttpService) {}
+
   public async addCart(costumerId: string) {
     const requestConfig: AxiosRequestConfig = {
       headers: {
@@ -66,7 +67,6 @@ export class CartService {
     return items;
   }
   public async getCart(costumerId: string): Promise<CartFlowDto> {
-    await this.addCart(costumerId);
     const requestConfig: AxiosRequestConfig = {
       headers: {
         Authorization: costumerId,
@@ -88,8 +88,16 @@ export class CartService {
           cartDto.cart = cartObj;
           return cartDto;
         }),
-        catchError((e) => {
-          throw new HttpException(e.response.data, e.response.status);
+        catchError(async (e) => {
+          if (
+            e.response.status === 404 &&
+            (e.data['message'] as string).startsWith('No such entity with')
+          ) {
+            await this.addCart(costumerId);
+            await this.getCart(costumerId);
+          } else {
+            throw new HttpException(e.response.data, e.response.status);
+          }
         }),
       )
       .toPromise();
@@ -196,7 +204,6 @@ export class CartService {
   }
 
   public async getCartTotals(costumerId: string): Promise<CartTotalFlowDto> {
-    await this.addCart(costumerId);
     const requestConfig: AxiosRequestConfig = {
       headers: {
         Authorization: costumerId,

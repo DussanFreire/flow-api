@@ -66,13 +66,8 @@ export class CartService {
 
     return items;
   }
-  public async getCart(costumerId: string): Promise<CartFlowDto> {
-    const requestConfig: AxiosRequestConfig = {
-      headers: {
-        Authorization: costumerId,
-      },
-    };
-    const cartPromise = this.httpService
+  private async getOnlyTheCar(requestConfig: AxiosRequestConfig) {
+    const cart = this.httpService
       .get<CartFlowDto>(ConnectionUrl.URL + '/carts/mine', requestConfig)
       .pipe(
         map(async (response: any) => {
@@ -88,21 +83,32 @@ export class CartService {
           cartDto.cart = cartObj;
           return cartDto;
         }),
-        catchError(async (e) => {
-          if (
-            e.response.status === 404 &&
-            (e.data['message'] as string).startsWith('No such entity with')
-          ) {
-            await this.addCart(costumerId);
-            await this.getCart(costumerId);
-          } else {
-            throw new HttpException(e.response.data, e.response.status);
-          }
-        }),
       )
       .toPromise();
-    const promises = [cartPromise, this.getCartTotals(costumerId)];
-    const [cart, cart_totals] = await Promise.all(promises);
+    return cart;
+  }
+  public async getCart(costumerId: string): Promise<CartFlowDto> {
+    const requestConfig: AxiosRequestConfig = {
+      headers: {
+        Authorization: costumerId,
+      },
+    };
+    var cart;
+    try {
+      cart = await this.getOnlyTheCar(requestConfig);
+    } catch (e) {
+      if (
+        e.response.status === 404 &&
+        (e.response.data['message'] as string).startsWith('No such entity with')
+      ) {
+        await this.addCart(costumerId);
+        cart = await this.getOnlyTheCar(requestConfig);
+      } else {
+        throw new HttpException(e.response.data, e.response.status);
+      }
+    }
+
+    const cart_totals = await this.getCartTotals(costumerId);
     (cart as CartFlowDto).cart.grand_total = (
       cart_totals as CartTotalFlowDto
     ).cart_totals.grand_total;

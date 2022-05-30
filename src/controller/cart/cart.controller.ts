@@ -70,9 +70,4 @@ export class CartController {
 
     return cart;
   }
-
-  @Get('/payment-methods')
-  async getPaymentMethodsInfo(@AuthUser() user: any){
-    return await this.shippingService.getPaymentMethodsInfo(user);
-  }
 }

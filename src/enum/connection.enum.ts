@@ -16,7 +16,3 @@ export enum FilterProducts{
   PRODUCT_BRAND = '/products/attributes/brand/options',
 
 }
-
-export enum Cart{
-  PAYMENTMETHODS = '/carts/mine/payment-methods',
-}

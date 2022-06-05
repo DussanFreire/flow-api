@@ -18,7 +18,7 @@ export class MeController {
   }
 
   @Put('/addresses')
-  async addNewAddres(@AuthUser() user: any,@Body() address: UserAddressMagentoDto) {
+  async addNewAddres(@AuthUser() user: any,@Body() address) {
     return await this.meService.addNewAddres(user, address);
   }
 }

@@ -14,6 +14,7 @@ export class UserAddressMagentoDto {
   city: String;
   firstname: String;
   lastname: String;
+  default_shipping: boolean;
   custom_attributes: [
     {
       attribute_code: String;

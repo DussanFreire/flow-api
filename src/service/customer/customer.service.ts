@@ -51,7 +51,7 @@ export class CustomerService {
  async getInfo(token : string): Promise<CustomerFlowDto> {
   const requestConfig: AxiosRequestConfig = {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: token,
     },
   };
   

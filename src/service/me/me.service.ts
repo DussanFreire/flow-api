@@ -10,6 +10,8 @@ import { UserInfoFlowDto } from 'src/dto/dto_flow/user_info.flow.dto';
 import { UserAddressFlowDto } from 'src/dto/dto_flow/user_address.flow';
 import { UserAddressMagentoDto } from 'src/dto/dto_magento/user_address.magento.dto';
 import { UserAddressesFlowDto } from 'src/dto/dto_flow/user_addresses.flow.dto';
+import { UserInfoMagento } from 'src/dto/dto_magento/user_info.magento.dto';
+import { stringify } from 'flatted';
 
 @Injectable()
 export class MeService {
@@ -105,5 +107,53 @@ export class MeService {
       .toPromise();
 
     return userInfo;
+  }
+
+  async addNewAddres(
+    costumerId: string, newAddress: UserAddressMagentoDto
+  ) {
+    const requestConfig: AxiosRequestConfig = {
+      headers: {
+        Authorization: costumerId,
+      },
+    };
+
+    let userinfo = await this.httpService
+      .get<UserInfoMagento>(
+        ConnectionUrl.URL + '/customers/me',
+        requestConfig,
+      )
+      .pipe(
+        map(async (response: any) => {
+          const customerAddress: UserInfoMagento = new UserInfoMagento();
+          customerAddress.customer = {
+            email: response.data.email,
+            firstname: response.data.firstname,
+            lastname: response.data.lastname,
+            website_id: response.data.website_id,
+            addresses: response.data.addresses
+          }
+          return customerAddress;
+        }),
+        catchError((e) => {
+          throw new HttpException(e.response.data, e.response.status);
+        }),
+      )
+      .toPromise();
+    userinfo.customer.addresses.push(newAddress);
+    await this.httpService
+      .put(
+        ConnectionUrl.URL + '/customers/me',
+        userinfo,
+        requestConfig
+      ).pipe(
+        map(async (response: any) => {
+          return response
+        }),
+        catchError((e) => {
+          throw new HttpException(e.response.data, e.response.status);
+        }),
+      )
+      .toPromise();
   }
 }

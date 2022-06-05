@@ -37,17 +37,14 @@ export class CategoryService {
     const filteredCategories = this.filterByActiveCateogries(
       categories.categoryList.filter((c) => c.name != 'Lo Nuevo'),
     );
-<<<<<<< HEAD
     return JSON.stringify(filteredCategories, [
       'id',
       'name',
       'is_active',
       'children_data',
     ]);
-=======
 
     return filteredCategories;
->>>>>>> ft_addaddress-paymentmethods
   }
   public getchildcategories(categoryId){
       

@@ -13,7 +13,6 @@ import {
 import { AuthGuard } from '@nestjs/passport';
 import { AuthUser } from 'src/decorator/user.decorator';
 import { CartService } from 'src/service/cart/cart.service';
-import { Strategy } from 'passport-jwt';
 import { CartMagentoDto } from 'src/dto/dto_magento/cart_product.magento.dto';
 import { CartPatchProductFlowDto } from 'src/dto/dto_flow/cart_patch_product.flow.dto';
 import { ShippingService } from 'src/service/shipping/shipping.service';

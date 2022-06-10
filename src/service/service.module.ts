@@ -3,11 +3,11 @@ import { Module } from '@nestjs/common';
 import { CustomerService } from './customer/customer.service';
 import { TokenService } from './token/token.service';
 import { CategoryService } from './category/category.service';
-import { ProductService } from './product/product.service';
 import { PaginateService } from './paginate/paginate.service';
 import { CartService } from './cart/cart.service';
 import { MeService } from './me/me.service';
 import { ShippingService } from './shipping/shipping.service';
+import { ProductService } from './product/product.service';
 
 @Module({
   imports: [HttpModule],

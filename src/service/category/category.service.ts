@@ -34,7 +34,6 @@ export class CategoryService {
         }),
       )
       .toPromise();
-
     const filteredCategories = this.filterByActiveCateogries(
       categories.categoryList.filter((c) => c.name != 'Lo Nuevo'),
     );

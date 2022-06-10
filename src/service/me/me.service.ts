@@ -109,9 +109,10 @@ export class MeService {
     return userInfo;
   }
 
-  async addNewAddres(
-    costumerId: string, newAddress: UserAddressMagentoDto
-  ) {
+  async addNewAddress(
+    costumerId: string,
+    newAddress: UserAddressMagentoDto,
+  ): Promise<UserAddressMagentoDto> {
     const requestConfig: AxiosRequestConfig = {
       headers: {
         Authorization: costumerId,
@@ -119,21 +120,18 @@ export class MeService {
     };
 
     let userinfo = await this.httpService
-      .get<UserInfoMagento>(
-        ConnectionUrl.URL + '/customers/me',
-        requestConfig,
-      )
+      .get<UserInfoMagento>(ConnectionUrl.URL + '/customers/me', requestConfig)
       .pipe(
         map(async (response: any) => {
-          const customerAddress: UserInfoMagento = new UserInfoMagento();
-          customerAddress.customer = {
+          const customerInfo: UserInfoMagento = new UserInfoMagento();
+          customerInfo.customer = {
             email: response.data.email,
             firstname: response.data.firstname,
             lastname: response.data.lastname,
             website_id: response.data.website_id,
-            addresses: response.data.addresses
-          }
-          return customerAddress;
+            addresses: response.data.addresses,
+          };
+          return customerInfo;
         }),
         catchError((e) => {
           throw new HttpException(e.response.data, e.response.status);
@@ -141,14 +139,21 @@ export class MeService {
       )
       .toPromise();
     userinfo.customer.addresses.push(newAddress);
-    await this.httpService
-      .put(
-        ConnectionUrl.URL + '/customers/me',
-        userinfo,
-        requestConfig
-      ).pipe(
+    return this.httpService
+      .put(ConnectionUrl.URL + '/customers/me', userinfo, requestConfig)
+      .pipe(
         map(async (response: any) => {
-          return response
+          const newCustomerInfo: UserInfoMagento = new UserInfoMagento();
+          newCustomerInfo.customer = {
+            email: response.data.email,
+            firstname: response.data.firstname,
+            lastname: response.data.lastname,
+            website_id: response.data.website_id,
+            addresses: response.data.addresses,
+          };
+          return newCustomerInfo.customer.addresses[
+            response.data.addresses.length - 1
+          ];
         }),
         catchError((e) => {
           throw new HttpException(e.response.data, e.response.status);

@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
+import { AuthUser } from 'src/decorator/user.decorator';
 import { CustomerFlowDto } from 'src/dto/dto_flow/customer.flow.dto';
 import { CustomerService } from 'src/service/customer/customer.service';
 
@@ -10,7 +11,7 @@ export class CustomerController {
     return await this.customerService.createCustomer(customerDto);
   }
   @Get('me')
-  async getInfo(@Body('token') token: string) {
+  async getInfo(@AuthUser() token: any) {
     return await this.customerService.getInfo(token);
   }
 }

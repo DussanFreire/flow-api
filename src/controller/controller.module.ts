@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { CacheModule, Module } from '@nestjs/common';
 import { ServiceModule } from 'src/service/service.module';
 import { CustomerController } from './customer/customer.controller';
 import { TokenController } from './token/token.controller';

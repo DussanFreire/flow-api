@@ -20,3 +20,18 @@ export enum FilterProducts{
 export enum Cart{
   PAYMENTMETHODS = '/carts/mine/payment-methods',
 }
+
+export enum QrGeneration{
+  SANBOX_URI= 'https://www99.bancred.com.bo/sandbox/api/v2/Qr/Generated',
+  LIVE_URI='https://apis.bcp.com.bo/OpenAPI_Qr/WebApi_Qr/api/v2/Qr/Generated'
+}
+
+export enum QrConsult{
+  SANBOX_URI = 'https://www99.bancred.com.bo/sandbox/api/v2/Qr/Consult',
+  LIVE_URI= 'https://apis.bcp.com.bo/OpenAPI_Qr/WebApi_Qr/api/v2/Qr/Consult'
+}
+
+export enum QrUpdate{
+  SANBOX_URI = 'https://www99.bancred.com.bo/sandbox/api/v2/Qr/Updated/Status',
+  LIVE_URI= 'https://apis.bcp.com.bo/OpenAPI_Qr/WebApi_Qr/api/v2/Qr/Updated/Status'
+}

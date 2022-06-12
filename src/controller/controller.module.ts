@@ -7,6 +7,7 @@ import { ProductController } from './product/product.controller';
 import { CartController } from './cart/cart.controller';
 import { LoginController } from './login/login.controller';
 import { MeController } from './me/me.controller';
+import { QrController } from './qr/qr.controller';
 
 @Module({
   imports: [ServiceModule],
@@ -18,6 +19,7 @@ import { MeController } from './me/me.controller';
     CartController,
     LoginController,
     MeController,
+    QrController,
   ],
 })
 export class ControllerModule {}

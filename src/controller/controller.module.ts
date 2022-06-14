@@ -8,6 +8,7 @@ import { CartController } from './cart/cart.controller';
 import { LoginController } from './login/login.controller';
 import { MeController } from './me/me.controller';
 import { QrController } from './qr/qr.controller';
+import { CardController } from './card/card.controller';
 
 @Module({
   imports: [ServiceModule],
@@ -20,6 +21,7 @@ import { QrController } from './qr/qr.controller';
     LoginController,
     MeController,
     QrController,
+    CardController,
   ],
 })
 export class ControllerModule {}

@@ -35,3 +35,23 @@ export enum QrUpdate{
   SANBOX_URI = 'https://www99.bancred.com.bo/sandbox/api/v2/Qr/Updated/Status',
   LIVE_URI= 'https://apis.bcp.com.bo/OpenAPI_Qr/WebApi_Qr/api/v2/Qr/Updated/Status'
 }
+
+export enum CardPaymentPreparation{
+  SANBOX_URI = 'https://www99.bancred.com.bo/sandbox/api/v1/Payments/Enlist',
+  LIVE_URI= 'https://apis.bcp.com.bo/OpenAPI_Payment/WebApi_Payment/api/v1/Payments/Enlist'
+}
+
+export enum CardPaymentConfirm{
+  SANBOX_URI = 'https://www99.bancred.com.bo/sandbox/api/v1/Payments/Confirm',
+  LIVE_URI= 'https://apis.bcp.com.bo/OpenAPI_Payment/WebApi_Payment/api/v1/Payments/Confirm'
+}
+
+export enum CardPaymentReturn{
+  SANBOX_URI = 'https://www99.bancred.com.bo/sandbox/api/v1/Payments/Reverse',
+  LIVE_URI= 'https://apis.bcp.com.bo/OpenAPI_Payment/WebApi_Payment/api/v1/Payments/Reverse'
+}
+
+export enum CardPaymentConsult{
+  SANBOX_URI = 'https://www99.bancred.com.bo/sandbox/api/v1/Payments/Consult',
+  LIVE_URI= 'https://apis.bcp.com.bo/OpenAPI_Payment/WebApi_Payment/api/v1/Payments/Consult'
+}

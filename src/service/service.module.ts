@@ -8,7 +8,8 @@ import { ProductService } from './product/product.service';
 import { CartService } from './cart/cart.service';
 import { MeService } from './me/me.service';
 import { ShippingService } from './shipping/shipping.service';
-import { QrService } from './qr/qr.service';
+import { QrService } from './payment_methods/qr/qr.service';
+import { CardService } from './payment_methods/card/card.service';
 
 @Module({
   imports: [HttpModule],
@@ -22,6 +23,7 @@ import { QrService } from './qr/qr.service';
     MeService,
     ShippingService,
     QrService,
+    CardService,
   ],
   exports: [
     TokenService,
@@ -32,6 +34,8 @@ import { QrService } from './qr/qr.service';
     CartService,
     MeService,
     ShippingService,
+    QrService,
+    CardService,
   ],
 })
 export class ServiceModule {}

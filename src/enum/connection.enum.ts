@@ -19,6 +19,7 @@ export enum FilterProducts{
 
 export enum Cart{
   PAYMENTMETHODS = '/carts/mine/payment-methods',
+  SET_PAYMENT_METHOD = '/carts/mine/set-payment-information',
 }
 
 export enum QrGeneration{

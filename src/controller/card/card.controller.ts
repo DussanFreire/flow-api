@@ -32,5 +32,4 @@ export class CardController {
         @Body() data: CardReturnDto) {
         return await this.cardService.returnCard(data);
     }
-
 }

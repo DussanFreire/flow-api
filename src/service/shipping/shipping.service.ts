@@ -60,4 +60,27 @@ export class ShippingService {
     .toPromise();
     return paymentmethods;
   }
+
+  public async setPaymentInfo(costumerId: string, info){
+    const requestConfig: AxiosRequestConfig = {
+      headers: {
+        Authorization: costumerId,
+      },
+    };
+    const url =
+      ConnectionUrl.URL + Cart.SET_PAYMENT_METHOD;
+    const paymentmethods = await this.httpService
+    .post(url, info, requestConfig)
+    .pipe(
+      map((response: any) => {
+        const paymentMethodsResult = response.data;
+        return paymentMethodsResult;
+      }),
+      catchError((e) => {
+        throw new HttpException(e.response.data, e.response.status);
+      }),
+    )
+    .toPromise();
+    return paymentmethods;
+  }
 }

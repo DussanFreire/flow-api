@@ -76,4 +76,9 @@ export class CartController {
     return await this.shippingService.getPaymentMethodsInfo(user);
   }
 
+  @Post('/set-payment-methods')
+  async setPaymentInfo(@AuthUser() user: any, @Body() info){
+    return await this.shippingService.setPaymentInfo(user,info);
+  }
+
 }

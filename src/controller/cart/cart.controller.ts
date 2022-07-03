@@ -16,6 +16,9 @@ import { CartService } from 'src/service/cart/cart.service';
 import { CartMagentoDto } from 'src/dto/dto_magento/cart_product.magento.dto';
 import { CartPatchProductFlowDto } from 'src/dto/dto_flow/cart_patch_product.flow.dto';
 import { ShippingService } from 'src/service/shipping/shipping.service';
+import { CartShippingInformationDto } from 'src/dto/dto_magento/cart.shipping-information.magento.dto';
+import { PaymentInformationDto } from 'src/dto/dto_magento/cart.payment_info.dto';
+import { InvoiceDto } from 'src/dto/dto_magento/cart.invoice.magento.dto';
 
 @Controller('cart')
 export class CartController {
@@ -75,4 +78,28 @@ export class CartController {
     return await this.shippingService.getPaymentMethodsInfo(user);
   }
 
+  @Post('/set-shipping-billing-address')
+  async setShippingBillingAddress(@AuthUser() user: any, @Body() addressInfo: CartShippingInformationDto){
+    return await this.shippingService.setShippingBillingAddress(user, addressInfo);
+  }
+
+  @Post('/payment-information')
+  async generateOrder(@AuthUser() user: any, @Body() paymentInformation: PaymentInformationDto){
+    return await this.shippingService.generateOrder(user, paymentInformation);
+  }
+
+  @Post('/order/:orderId/invoice')
+  async generateInvoce(@Body() dataInvoide: InvoiceDto, @Param('orderId') orderId: string){
+    return this.shippingService.generateInvoce(dataInvoide,orderId);
+  }
+
+  @Post('/order/:orderId/ship')
+  async generateShipment(@Param('orderId') orderId: string){
+    return this.shippingService.generateShipment(orderId);
+  }
+
+  @Post('/order/:orderId/refund')
+  async generateRefund(@Param('orderId') orderId: string){
+    return this.shippingService.generateRefund(orderId);
+  }
 }

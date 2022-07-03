@@ -3,7 +3,7 @@ export class UserAddressFlowDto {
   name: String;
   region: String;
   city: String;
-  telephone: number;
+  telephone: string;
   country: String;
   street: [String, String];
 }

@@ -61,7 +61,6 @@ export class MeService {
             const addressMagentoDto: UserAddressMagentoDto = Object.assign(a);
             const addressFlowDto: UserAddressFlowDto = new UserAddressFlowDto();
 
-            addressFlowDto.id = addressMagentoDto.id;
             addressFlowDto.name = `${addressMagentoDto.firstname} ${addressMagentoDto.lastname}`;
             addressFlowDto.telephone = addressMagentoDto.telephone;
             addressFlowDto.city = addressMagentoDto.city;
@@ -112,7 +111,7 @@ export class MeService {
   async addNewAddress(
     costumerId: string,
     newAddress: UserAddressMagentoDto,
-  ): Promise<UserAddressMagentoDto> {
+  ): Promise<UserInfoMagento> {
     const requestConfig: AxiosRequestConfig = {
       headers: {
         Authorization: costumerId,
@@ -143,17 +142,15 @@ export class MeService {
       .put(ConnectionUrl.URL + '/customers/me', userinfo, requestConfig)
       .pipe(
         map(async (response: any) => {
-          const newCustomerInfo: UserInfoMagento = new UserInfoMagento();
-          newCustomerInfo.customer = {
+          const userAddress: UserInfoMagento = new UserInfoMagento();
+          userAddress.customer= {
             email: response.data.email,
             firstname: response.data.firstname,
             lastname: response.data.lastname,
             website_id: response.data.website_id,
-            addresses: response.data.addresses,
-          };
-          return newCustomerInfo.customer.addresses[
-            response.data.addresses.length - 1
-          ];
+            addresses: response.data.addresses
+          }
+          return userAddress;
         }),
         catchError((e) => {
           throw new HttpException(e.response.data, e.response.status);

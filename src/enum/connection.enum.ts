@@ -19,4 +19,10 @@ export enum FilterProducts{
 
 export enum Cart{
   PAYMENTMETHODS = '/carts/mine/payment-methods',
+  SET_SHIPPING_BILLING_ADDRESS = '/carts/mine/shipping-information',
+  PAYMENT_INFORMATION = '/carts/mine/payment-information',
+  ORDER= '/order/',
+  INVOICE='/invoice',
+  SHIP='/ship',
+  REFUND='/refund'
 }

@@ -18,9 +18,7 @@ export class MeController {
   }
 
   @Post('/addresses')
-  async addNewAddres(@AuthUser() user: any, @Body() address) {
-    const newAddress: UserAddressMagentoDto =
-      await this.meService.addNewAddress(user, address);
-    return newAddress;
+  async addNewAddres(@AuthUser() user: any, @Body() address: UserAddressMagentoDto) {
+    return await this.meService.addNewAddress(user, address);
   }
 }

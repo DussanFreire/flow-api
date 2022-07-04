@@ -2,23 +2,21 @@ export class UserAddressMagentoDto {
   id: number;
   customer_id: number;
   region: {
-    region_code: String;
-    region: String;
+    region_code: string;
+    region: string;
     region_id: number;
   };
   region_id: number;
-  country_id: String;
-  street: [String, String];
+  country_id: string;
+  street: [string, string];
   telephone: number;
   postcode: number;
-  city: String;
-  firstname: String;
-  lastname: String;
+  city: string;
+  firstname: string;
+  lastname: string;
   default_shipping: boolean;
-  custom_attributes: [
-    {
-      attribute_code: String;
-      value: String;
-    },
-  ];
+  custom_attributes: Array<{
+    attribute_code: string;
+    value: string;
+  }>;
 }

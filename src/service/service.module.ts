@@ -8,6 +8,7 @@ import { CartService } from './cart/cart.service';
 import { MeService } from './me/me.service';
 import { ShippingService } from './shipping/shipping.service';
 import { ProductService } from './product/product.service';
+import { AddressService } from './address/address.service';
 
 @Module({
   imports: [HttpModule],
@@ -20,6 +21,7 @@ import { ProductService } from './product/product.service';
     CartService,
     MeService,
     ShippingService,
+    AddressService,
   ],
   exports: [
     TokenService,
@@ -30,6 +32,7 @@ import { ProductService } from './product/product.service';
     CartService,
     MeService,
     ShippingService,
+    AddressService,
   ],
 })
 export class ServiceModule {}

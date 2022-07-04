@@ -39,11 +39,16 @@ export class CartService {
   }
 
   async getItems(itemsList: CartItemDtoFlow[]): Promise<CartItemDtoFlow[]> {
+    const requestConfig: AxiosRequestConfig = {
+      headers: {
+        Authorization: `Bearer ${ConnectionUrl.ACCESS_TOKEN}`,
+      },
+    };
     let items: any[];
     let promiseItems: Promise<any>[] = itemsList.map(
       (el: CartItemDtoFlow): Promise<any> =>
         this.httpService
-          .get(ConnectionUrl.URL + `/products/${el['sku']}`)
+          .get(ConnectionUrl.URL + `/products/${el['sku']}`, requestConfig)
           .pipe(
             map((item) => {
               let imageUrl: string = '';

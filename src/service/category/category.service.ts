@@ -3,6 +3,7 @@ import { HttpException, Injectable, Res } from '@nestjs/common';
 import { catchError, map } from 'rxjs';
 import { CategoryDtoMagento } from 'src/dto/dto_magento/category.magento.dto';
 import { CategoryListMagentoDto } from 'src/dto/dto_magento/category_list.magento.dto';
+import { AxiosRequestConfig } from 'axios';
 import { ConnectionUrl } from 'src/enum/connection.enum';
 @Injectable()
 export class CategoryService {
@@ -22,8 +23,16 @@ export class CategoryService {
   }
 
   public async getCategories() {
+    const requestConfig: AxiosRequestConfig = {
+      headers: {
+        Authorization: `Bearer ${ConnectionUrl.ACCESS_TOKEN}`,
+      },
+    };
+
+    let url = ConnectionUrl.URL + '/categories';
+
     const categories = await this.httpService
-      .get<CategoryListMagentoDto>(ConnectionUrl.URL + '/categories')
+      .get<CategoryListMagentoDto>(url, requestConfig)
       .pipe(
         map((response: any) => {
           const res = new CategoryListMagentoDto(response.data.children_data);

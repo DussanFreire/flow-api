@@ -6,4 +6,6 @@ export class UserAddressFlowDto {
   telephone: number;
   country: String;
   street: [String, String];
+  lat: string | null;
+  lng: string | null;
 }

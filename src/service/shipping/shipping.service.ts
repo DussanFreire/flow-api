@@ -4,7 +4,7 @@ import { AxiosRequestConfig } from 'axios';
 import { catchError, map } from 'rxjs';
 import { CartShippingFlowDto } from 'src/dto/dto_flow/cart_shipping_cost.flow.dto';
 import { ShippingDataMagentoDto } from 'src/dto/dto_magento/shipping_data.megento.dto';
-import { Cart, ConnectionUrl } from 'src/enum/connection.enum';
+import { ConnectionUrl } from 'src/enum/connection.enum';
 
 @Injectable()
 export class ShippingService {
@@ -17,7 +17,7 @@ export class ShippingService {
       },
     };
     const shippingData = new ShippingDataMagentoDto();
-    shippingData.addressId = addressId;
+    shippingData.address_id = addressId;
 
     const url =
       ConnectionUrl.URL + '/carts/mine/estimate-shipping-methods-by-address-id';
@@ -37,27 +37,5 @@ export class ShippingService {
       .toPromise();
 
     return shippingResults;
-  }
-  public async getPaymentMethodsInfo(costumerId: string){
-    const requestConfig: AxiosRequestConfig = {
-      headers: {
-        Authorization: costumerId,
-      },
-    };
-    const url =
-      ConnectionUrl.URL + Cart.PAYMENTMETHODS;
-    const paymentmethods = await this.httpService
-    .get(url,requestConfig)
-    .pipe(
-      map((response: any) => {
-        const paymentMethodsResult = response.data;
-        return paymentMethodsResult;
-      }),
-      catchError((e) => {
-        throw new HttpException(e.response.data, e.response.status);
-      }),
-    )
-    .toPromise();
-    return paymentmethods;
   }
 }

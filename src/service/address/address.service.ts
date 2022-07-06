@@ -48,11 +48,11 @@ export class AddressService {
     costumerId: string,
     newAddress: UserAddressMagentoDto,
   ): Promise<UserAddressMagentoDto> {
-    const requestConfig: AxiosRequestConfig = this.getRequestConfig(costumerId);
     let userinfo = await this.getUserInfoWithAddressesInMagentoFormat(
-      requestConfig,
+      costumerId,
     );
     userinfo.customer.addresses.push(newAddress);
+    const requestConfig: AxiosRequestConfig = this.getRequestConfig(costumerId);
     return this.httpService
       .put(ConnectionUrl.URL + '/customers/me', userinfo, requestConfig)
       .pipe(
@@ -75,9 +75,11 @@ export class AddressService {
       .toPromise();
   }
 
-  private async getUserInfoWithAddressesInMagentoFormat(
-    requestConfig: AxiosRequestConfig,
+  public async getUserInfoWithAddressesInMagentoFormat(
+    costumerId: string,
   ): Promise<UserInfoMagento> {
+    const requestConfig: AxiosRequestConfig = this.getRequestConfig(costumerId);
+
     return this.httpService
       .get<UserInfoMagento>(ConnectionUrl.URL + '/customers/me', requestConfig)
       .pipe(

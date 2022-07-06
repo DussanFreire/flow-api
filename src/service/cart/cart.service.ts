@@ -9,12 +9,13 @@ import { CartPatchProductFlowDto } from 'src/dto/dto_flow/cart_patch_product.flo
 import { ConnectionUrl, FilterProducts } from 'src/enum/connection.enum';
 import { CartItemDtoFlow } from 'src/dto/dto_flow/cart_item.flow.dto';
 import { CartTotalFlowDto } from 'src/dto/dto_flow/cart_totals.flow.dto';
+import { NewCartMagentoDto } from 'src/dto/dto_magento/new_cart.magento.dto';
 
 @Injectable()
 export class CartService {
   constructor(private httpService: HttpService) {}
 
-  public async addCart(costumerId: string) {
+  public async createNewCart(costumerId: string) {
     const requestConfig: AxiosRequestConfig = {
       headers: {
         Authorization: costumerId,
@@ -27,7 +28,9 @@ export class CartService {
       .post(url, null, requestConfig)
       .pipe(
         map((response: any) => {
-          return { cartId: response.data };
+          const newCart: NewCartMagentoDto = new NewCartMagentoDto();
+          newCart.cart_id = response.data + '';
+          return newCart;
         }),
         catchError((e) => {
           throw new HttpException(e.response.data, e.response.status);
@@ -71,7 +74,7 @@ export class CartService {
 
     return items;
   }
-  private async getOnlyTheCar(requestConfig: AxiosRequestConfig) {
+  private async getOnlyTheCart(requestConfig: AxiosRequestConfig) {
     const cart = this.httpService
       .get<CartFlowDto>(ConnectionUrl.URL + '/carts/mine', requestConfig)
       .pipe(
@@ -100,14 +103,14 @@ export class CartService {
     };
     var cart;
     try {
-      cart = await this.getOnlyTheCar(requestConfig);
+      cart = await this.getOnlyTheCart(requestConfig);
     } catch (e) {
       if (
         e.response.status === 404 &&
         (e.response.data['message'] as string).startsWith('No such entity with')
       ) {
-        await this.addCart(costumerId);
-        cart = await this.getOnlyTheCar(requestConfig);
+        await this.createNewCart(costumerId);
+        cart = await this.getOnlyTheCart(requestConfig);
       } else {
         throw new HttpException(e.response.data, e.response.status);
       }

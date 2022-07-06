@@ -1,22 +1,41 @@
-export class UserAddressMagentoDto {
-  id: number;
-  customer_id: number;
-  region: {
-    region_code: string;
-    region: string;
-    region_id: number;
-  };
+import { Type } from 'class-transformer';
+import { IsNotEmpty, IsObject } from 'class-validator';
+
+class RegionDto {
+  region_code: string;
+  region: string;
   region_id: number;
+}
+
+export class UserAddressMagentoDto {
+  @IsNotEmpty()
+  id: number;
+  @IsObject()
+  @Type(() => RegionDto)
+  region: RegionDto;
+  @IsNotEmpty()
   country_id: string;
+  @IsNotEmpty()
   street: [string, string];
-  telephone: number;
+  @IsNotEmpty()
   postcode: number;
+  @IsNotEmpty()
   city: string;
+  @IsNotEmpty()
   firstname: string;
+  @IsNotEmpty()
   lastname: string;
+  @IsNotEmpty()
+  telephone: string;
+  @IsNotEmpty()
   default_shipping: boolean;
-  custom_attributes: Array<{
-    attribute_code: string;
-    value: string;
-  }>;
+  @IsNotEmpty()
+  default_billing: boolean;
+  @IsNotEmpty()
+  custom_attributes: [
+    {
+      attribute_code: string;
+      value: string;
+    },
+  ];
 }

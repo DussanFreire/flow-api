@@ -1,11 +1,11 @@
 export class UserAddressFlowDto {
   id: number;
-  name: String;
-  region: String;
-  city: String;
-  telephone: number;
-  country: String;
-  street: [String, String];
+  name: string;
+  region: string;
+  city: string;
+  telephone: string;
+  country: string;
+  street: [string, string];
   lat: string | null;
   lng: string | null;
 }

@@ -9,6 +9,13 @@ import { MeService } from './me/me.service';
 import { ShippingService } from './shipping/shipping.service';
 import { ProductService } from './product/product.service';
 import { AddressService } from './address/address.service';
+import { InvoiceService } from './invoice/invoice.service';
+import { RefundService } from './refund/refund.service';
+import { PaymentMethodsService } from './payment_methods/payment_methods.service';
+import { BillingAddressService } from './billing_address/billing_address.service';
+import { OrderService } from './order/order.service';
+import { ShipmentService } from './shipment/shipment.service';
+import { CartOrderFlowService } from './cart_order_flow/cart_order_flow.service';
 
 @Module({
   imports: [HttpModule],
@@ -22,6 +29,13 @@ import { AddressService } from './address/address.service';
     MeService,
     ShippingService,
     AddressService,
+    InvoiceService,
+    RefundService,
+    PaymentMethodsService,
+    BillingAddressService,
+    OrderService,
+    ShipmentService,
+    CartOrderFlowService,
   ],
   exports: [
     TokenService,
@@ -33,6 +47,13 @@ import { AddressService } from './address/address.service';
     MeService,
     ShippingService,
     AddressService,
+    InvoiceService,
+    RefundService,
+    PaymentMethodsService,
+    BillingAddressService,
+    OrderService,
+    ShipmentService,
+    CartOrderFlowService,
   ],
 })
 export class ServiceModule {}

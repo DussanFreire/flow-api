@@ -1,3 +1,3 @@
 export class ShippingDataMagentoDto {
-  addressId: string;
+  address_id: string;
 }

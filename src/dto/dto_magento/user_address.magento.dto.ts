@@ -2,27 +2,29 @@ import { Type } from 'class-transformer';
 import { IsNotEmpty, IsObject } from 'class-validator';
 
 class RegionDto {
-  region_code: String;
-  region: String;
+  region_code: string;
+  region: string;
   region_id: number;
 }
 
 export class UserAddressMagentoDto {
+  @IsNotEmpty()
+  id: number;
   @IsObject()
   @Type(() => RegionDto)
   region: RegionDto;
   @IsNotEmpty()
-  country_id: String;
+  country_id: string;
   @IsNotEmpty()
-  street: [String, String];
+  street: [string, string];
   @IsNotEmpty()
   postcode: number;
   @IsNotEmpty()
-  city: String;
+  city: string;
   @IsNotEmpty()
-  firstname: String;
+  firstname: string;
   @IsNotEmpty()
-  lastname: String;
+  lastname: string;
   @IsNotEmpty()
   telephone: string;
   @IsNotEmpty()
@@ -32,8 +34,8 @@ export class UserAddressMagentoDto {
   @IsNotEmpty()
   custom_attributes: [
     {
-      attribute_code: String;
-      value: String;
+      attribute_code: string;
+      value: string;
     },
   ];
 }

@@ -1,10 +1,10 @@
 import { HttpService } from '@nestjs/axios';
 import { HttpException, Injectable, Res } from '@nestjs/common';
 import { catchError, map } from 'rxjs';
-import { CategoryDtoMagento } from 'src/dto/dto_magento/category.magento.dto';
-import { CategoryListMagentoDto } from 'src/dto/dto_magento/category_list.magento.dto';
+import { CategoryDtoMagento } from 'src/dto/dto_magento/category/category.magento.dto';
+import { CategoryListMagentoDto } from '../../dto/dto_magento/category/category_list.magento.dto';
 import { AxiosRequestConfig } from 'axios';
-import { ConnectionUrl } from 'src/enum/connection.enum';
+import { ConnectionUrl } from '../../enum/connection.enum';
 @Injectable()
 export class CategoryService {
   constructor(private httpService: HttpService) {}

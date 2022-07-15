@@ -1,10 +1,10 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { map } from 'rxjs';
-import { ConnectionUrl } from 'src/enum/connection.enum';
+import { ConnectionUrl } from '../../enum/connection.enum';
 import { catchError } from 'rxjs/operators';
-import { LoginFlowDto } from 'src/dto/dto_flow/login.flow.dto';
-import { TokenMagentoDto } from 'src/dto/dto_magento/token.magento.dto';
+import { LoginFlowDto } from 'src/dto/dto_flow/token/login.flow.dto';
+import { TokenMagentoDto } from '../../dto/dto_magento/token/token.magento.dto';
 
 @Injectable()
 export class TokenService {

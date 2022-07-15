@@ -1,10 +1,10 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { map, catchError } from 'rxjs';
-import { UserAddressFlowDto } from 'src/dto/dto_flow/user_address.flow';
-import { UserAddressesFlowDto } from 'src/dto/dto_flow/user_addresses.flow.dto';
-import { UserAddressMagentoDto } from 'src/dto/dto_magento/user_address.magento.dto';
-import { UserInfoMagento } from 'src/dto/dto_magento/user_info.magento.dto';
-import { ConnectionUrl } from 'src/enum/connection.enum';
+import { UserAddressFlowDto } from '../../dto/dto_flow/me/address-service/user_address.flow';
+import { UserAddressesFlowDto } from '../../dto/dto_flow/me/address-service/user_addresses.flow.dto';
+import { UserAddressMagentoDto } from 'src/dto/dto_magento/me/user_address.magento.dto';
+import { UserInfoMagento } from '../../dto/dto_magento/me/user_info.magento.dto';
+import { ConnectionUrl } from '../../enum/connection.enum';
 import { AxiosRequestConfig } from 'axios';
 import { HttpService } from '@nestjs/axios/dist/http.service';
 

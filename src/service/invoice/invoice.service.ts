@@ -1,8 +1,8 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { map, catchError } from 'rxjs';
-import { InvoiceDto } from 'src/dto/dto_magento/cart.invoice.magento.dto';
-import { InvoiceMagentoDto } from 'src/dto/dto_magento/invoice.magento.dto';
-import { ConnectionUrl, Cart } from 'src/enum/connection.enum';
+import { InvoiceDto } from 'src/dto/dto_magento/cart/cart-order/cart.invoice.magento.dto';
+import { InvoiceMagentoDto } from '../../dto/dto_magento/cart/cart-order/invoice.magento.dto';
+import { ConnectionUrl, Cart } from '../../enum/connection.enum';
 import { AxiosRequestConfig } from 'axios';
 import { HttpService } from '@nestjs/axios';
 

@@ -1,11 +1,11 @@
-import { ConnectionUrl, FilterProducts } from 'src/enum/connection.enum';
+import { ConnectionUrl, FilterProducts } from '../../enum/connection.enum';
 import { HttpService } from '@nestjs/axios';
 import { HttpException, Injectable } from '@nestjs/common';
 import { catchError, map } from 'rxjs';
-import { ProductListMagentoDto } from 'src/dto/dto_magento/product_list.magento.dto';
-import { ProductMagentoDto } from 'src/dto/dto_magento/product.magento.dto';
+import { ProductListMagentoDto } from '../../dto/dto_magento/product/product_list.magento.dto';
+import { ProductMagentoDto } from '../../dto/dto_magento/product/product.magento.dto';
 import { PaginateService } from '../paginate/paginate.service';
-import { ProductFilterMagentoDto } from 'src/dto/dto_magento/product.filter.magento.dto';
+import { ProductFilterMagentoDto } from 'src/dto/dto_magento/product/product.filter.magento.dto';
 import { AxiosRequestConfig } from 'axios';
 
 @Injectable()

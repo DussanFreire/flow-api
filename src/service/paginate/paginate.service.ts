@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PaginationConfig } from 'src/enum/filter.serch.enum';
+import { PaginationConfig } from '../../enum/filter.serch.enum';
 
 @Injectable()
 export class PaginateService {

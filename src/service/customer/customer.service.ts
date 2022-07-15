@@ -2,10 +2,10 @@ import { HttpService } from '@nestjs/axios';
 import { HttpException, Injectable } from '@nestjs/common';
 import { map, Observable } from 'rxjs';
 import { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { ConnectionUrl } from 'src/enum/connection.enum';
+import { ConnectionUrl } from '../../enum/connection.enum';
 import { catchError } from 'rxjs/operators';
-import { CustomerMagentoDto } from 'src/dto/dto_magento/customer.magento.dto';
-import { CustomerFlowDto } from 'src/dto/dto_flow/customer.flow.dto';
+import { CustomerMagentoDto } from '../../dto/dto_magento/customer/customer.magento.dto';
+import { CustomerFlowDto } from '../../dto/dto_flow/customer/customer.flow.dto';
 
 @Injectable()
 export class CustomerService {

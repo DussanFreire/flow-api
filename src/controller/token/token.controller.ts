@@ -1,6 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common';
-import { LoginFlowDto } from 'src/dto/dto_flow/login.flow.dto';
-import { TokenService } from 'src/service/token/token.service';
+import { LoginFlowDto } from '../../dto/dto_flow/token/login.flow.dto';
+import { TokenService } from '../../service/token/token.service';
 
 @Controller('token')
 export class TokenController {

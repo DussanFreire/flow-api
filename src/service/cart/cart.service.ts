@@ -2,14 +2,14 @@ import { HttpService } from '@nestjs/axios';
 import { HttpException, Injectable } from '@nestjs/common';
 import { catchError, map, of } from 'rxjs';
 import { AxiosRequestConfig } from 'axios';
-import { CartMagentoDto } from 'src/dto/dto_magento/cart_product.magento.dto';
-import { CartFlowProductDto } from 'src/dto/dto_flow/cart_product.flow.dto';
-import { CartFlowDto } from 'src/dto/dto_flow/cart.flow.dto';
-import { CartPatchProductFlowDto } from 'src/dto/dto_flow/cart_patch_product.flow.dto';
-import { ConnectionUrl, FilterProducts } from 'src/enum/connection.enum';
-import { CartItemDtoFlow } from 'src/dto/dto_flow/cart_item.flow.dto';
-import { CartTotalFlowDto } from 'src/dto/dto_flow/cart_totals.flow.dto';
-import { NewCartMagentoDto } from 'src/dto/dto_magento/new_cart.magento.dto';
+import { CartMagentoDto } from 'src/dto/dto_magento/cart/cart-service/cart_product.magento.dto';
+import { CartFlowProductDto } from '../../dto/dto_flow/cart/cart-service/cart_product.flow.dto';
+import { CartFlowDto } from '../../dto/dto_flow/cart/cart-service/cart.flow.dto';
+import { CartPatchProductFlowDto } from 'src/dto/dto_flow/cart/cart_patch_product.flow.dto';
+import { ConnectionUrl, FilterProducts } from '../../enum/connection.enum';
+import { CartTotalFlowDto } from '../../dto/dto_flow/cart/cart-service/cart_totals.flow.dto';
+import { NewCartMagentoDto } from '../../dto/dto_magento/cart/cart-service/new_cart.magento.dto';
+import { CartItemDtoFlow } from 'src/dto/dto_flow/cart/cart-service/cart_item.flow.dto';
 
 @Injectable()
 export class CartService {

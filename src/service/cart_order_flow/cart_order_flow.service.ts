@@ -1,22 +1,22 @@
 import { HttpException, Injectable } from '@nestjs/common';
-import { OrderFlowDto } from 'src/dto/dto_flow/order.flow.dto';
-import { OrderSuccessFlowDto } from 'src/dto/dto_flow/order_success.flow.dto';
-import { AddressInformationDto } from 'src/dto/dto_magento/address_information.dto';
-import { InvoiceDto } from 'src/dto/dto_magento/cart.invoice.magento.dto';
-import { PaymentInformationDto } from 'src/dto/dto_magento/cart.payment_info.dto';
-import { CartShippingInformationDto } from 'src/dto/dto_magento/cart.shipping_information.magento.dto';
-import { InvoiceMagentoDto } from 'src/dto/dto_magento/invoice.magento.dto';
-import { NewCartMagentoDto } from 'src/dto/dto_magento/new_cart.magento.dto';
-import { OrderMagentoDto } from 'src/dto/dto_magento/order.magento.dto';
-import { ShipmentMagentoDto } from 'src/dto/dto_magento/shipment.magento.dto';
-import { ShippingBillingInfoDto } from 'src/dto/dto_magento/shipping_billingInfo.dto';
-import { UserAddressMagentoDto } from 'src/dto/dto_magento/user_address.magento.dto';
+import { OrderFlowDto } from 'src/dto/dto_flow/cart/order.flow.dto';
+import { OrderSuccessFlowDto } from '../../dto/dto_flow/cart/cart-order/order_success.flow.dto';
+import { AddressInformationDto } from '../../dto/dto_magento/cart/cart-order/address_information.dto';
+import { InvoiceDto } from '../../dto/dto_magento/cart/cart-order/cart.invoice.magento.dto';
+import { PaymentInformationDto } from '../../dto/dto_magento/cart/cart.payment_info.dto';
+import { CartShippingInformationDto } from '../../dto/dto_magento/cart/cart-order/cart.shipping_information.magento.dto';
+import { InvoiceMagentoDto } from 'src/dto/dto_magento/cart/cart-order/invoice.magento.dto';
+import { OrderMagentoDto } from 'src/dto/dto_magento/cart/order.magento.dto';
+import { ShipmentMagentoDto } from 'src/dto/dto_magento/cart/shipment.magento.dto';
+import { ShippingBillingInfoDto } from '../../dto/dto_magento/cart/cart-order/shipping_billingInfo.dto';
+import { UserAddressMagentoDto } from 'src/dto/dto_magento/me/user_address.magento.dto';
 import { AddressService } from '../address/address.service';
 import { BillingAddressService } from '../billing_address/billing_address.service';
 import { CartService } from '../cart/cart.service';
 import { InvoiceService } from '../invoice/invoice.service';
 import { OrderService } from '../order/order.service';
 import { ShipmentService } from '../shipment/shipment.service';
+import { NewCartMagentoDto } from 'src/dto/dto_magento/cart/cart-service/new_cart.magento.dto';
 
 @Injectable()
 export class CartOrderFlowService {

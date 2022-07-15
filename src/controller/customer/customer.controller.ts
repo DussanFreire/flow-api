@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { AuthUser } from 'src/decorator/user.decorator';
-import { CustomerFlowDto } from 'src/dto/dto_flow/customer.flow.dto';
-import { CustomerService } from 'src/service/customer/customer.service';
+import { AuthUser } from '../../decorator/user.decorator';
+import { CustomerFlowDto } from '../../dto/dto_flow/customer/customer.flow.dto';
+import { CustomerService } from '../../service/customer/customer.service';
 
 @Controller('customers')
 export class CustomerController {

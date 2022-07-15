@@ -1,6 +1,6 @@
 import { Body, CacheInterceptor, Controller, Get, Param, Query, UseInterceptors } from '@nestjs/common';
-import { ProductFilterMagentoDto } from 'src/dto/dto_magento/product.filter.magento.dto';
-import { ProductService } from 'src/service/product/product.service';
+import { ProductFilterMagentoDto } from '../../dto/dto_magento/product/product.filter.magento.dto';
+import { ProductService } from '../../service/product/product.service';
 
 @Controller('products')
 export class ProductController {

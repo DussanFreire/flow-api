@@ -1,12 +1,12 @@
 import { HttpService } from '@nestjs/axios';
 import { HttpException, Injectable } from '@nestjs/common';
-import { CartFlowDto } from 'src/dto/dto_flow/cart.flow.dto';
+import { CartFlowDto } from 'src/dto/dto_flow/cart/cart-service/cart.flow.dto';
 import { CartService } from '../cart/cart.service';
 import { CategoryService } from '../category/category.service';
 import { AxiosRequestConfig } from 'axios';
-import { ConnectionUrl } from 'src/enum/connection.enum';
+import { ConnectionUrl } from '../../enum/connection.enum';
 import { catchError, filter, map } from 'rxjs';
-import { UserInfoFlowDto } from 'src/dto/dto_flow/user_info.flow.dto';
+import { UserInfoFlowDto } from '../../dto/dto_flow/me/user_info.flow.dto';
 
 @Injectable()
 export class MeService {

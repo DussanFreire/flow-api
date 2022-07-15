@@ -5,7 +5,7 @@ export class UserAddressFlowDto {
   city: string;
   telephone: string;
   country: string;
-  street: [string, string];
+  street: string[];
   lat: string | null;
   lng: string | null;
 }

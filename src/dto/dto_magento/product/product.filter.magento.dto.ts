@@ -1,5 +1,5 @@
 import { IsIn, IsNotEmpty, IsNumber, isNumber, IsOptional } from "class-validator";
-import { SortConfig, SortDirection } from "src/enum/filter.serch.enum";
+import { SortConfig, SortDirection } from "../../../enum/filter.serch.enum";
 
 export class ProductFilterMagentoDto {
     @IsNotEmpty()

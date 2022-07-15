@@ -1,8 +1,8 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { AxiosRequestConfig } from 'axios';
 import { map, catchError } from 'rxjs';
-import { ShipmentMagentoDto } from 'src/dto/dto_magento/shipment.magento.dto';
-import { ConnectionUrl, Cart } from 'src/enum/connection.enum';
+import { ShipmentMagentoDto } from '../../dto/dto_magento/cart/shipment.magento.dto';
+import { ConnectionUrl, Cart } from '../../enum/connection.enum';
 import { HttpService } from '@nestjs/axios';
 @Injectable()
 export class ShipmentService {

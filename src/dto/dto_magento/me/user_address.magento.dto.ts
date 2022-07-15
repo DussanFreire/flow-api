@@ -6,9 +6,11 @@ class RegionDto {
   region: string;
   region_id: number;
 }
-
+class custom_attributes{
+  attribute_code: string;
+  value: string;
+}
 export class UserAddressMagentoDto {
-  @IsNotEmpty()
   id: number;
   @IsObject()
   @Type(() => RegionDto)
@@ -16,9 +18,9 @@ export class UserAddressMagentoDto {
   @IsNotEmpty()
   country_id: string;
   @IsNotEmpty()
-  street: [string, string];
+  street: string[];
   @IsNotEmpty()
-  postcode: number;
+  postcode: string;
   @IsNotEmpty()
   city: string;
   @IsNotEmpty()
@@ -32,10 +34,6 @@ export class UserAddressMagentoDto {
   @IsNotEmpty()
   default_billing: boolean;
   @IsNotEmpty()
-  custom_attributes: [
-    {
-      attribute_code: string;
-      value: string;
-    },
-  ];
+  @Type(() => custom_attributes)
+  custom_attributes: custom_attributes[];
 }

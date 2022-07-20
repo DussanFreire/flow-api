@@ -93,6 +93,7 @@ export class ProductService {
     });
     return this.paginateService.paginatedResults(respuesta.productList, page);
   }
+  //No useful funtion **Never used
   public async getBrandFromBrandId(brandid: Array<number>) {
     let brandsResponse = [];
     const brands = await this.httpService

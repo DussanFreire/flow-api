@@ -32,10 +32,8 @@ export class UserAddressMagentoDto {
   @IsNotEmpty()
   default_billing: boolean;
   @IsNotEmpty()
-  custom_attributes: [
-    {
-      attribute_code: string;
-      value: string;
-    },
-  ];
+  custom_attributes: Array<{
+    attribute_code: string;
+    value: string;
+  }>;
 }

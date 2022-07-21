@@ -5,7 +5,7 @@ import { CartService } from '../cart/cart.service';
 import { CategoryService } from '../category/category.service';
 import { AxiosRequestConfig } from 'axios';
 import { ConnectionUrl } from 'src/enum/connection.enum';
-import { catchError, filter, map } from 'rxjs';
+import { catchError, map } from 'rxjs';
 import { UserInfoFlowDto } from 'src/dto/dto_flow/user_info.flow.dto';
 
 @Injectable()
@@ -33,7 +33,7 @@ export class MeService {
     return { cart_info, user_info, categories };
   }
 
-  private async getUserId(costumerId: string): Promise<UserInfoFlowDto> {
+  public async getUserId(costumerId: string): Promise<UserInfoFlowDto> {
     const requestConfig: AxiosRequestConfig = {
       headers: {
         Authorization: costumerId,

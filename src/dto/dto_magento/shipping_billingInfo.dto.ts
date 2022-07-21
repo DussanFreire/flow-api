@@ -11,10 +11,8 @@ export class ShippingBillingInfoDto {
   email: string;
   telephone: string;
   default_shipping: boolean;
-  custom_attributes: [
-    {
-      attribute_code: String;
-      value: String;
-    },
-  ];
+  custom_attributes: Array<{
+    attribute_code: String;
+    value: String;
+  }>;
 }

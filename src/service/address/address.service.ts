@@ -7,9 +7,45 @@ import { UserInfoMagento } from 'src/dto/dto_magento/user_info.magento.dto';
 import { ConnectionUrl } from 'src/enum/connection.enum';
 import { AxiosRequestConfig } from 'axios';
 import { HttpService } from '@nestjs/axios/dist/http.service';
+import { AddressDeleteMagentoDto } from 'src/dto/dto_magento/address_delete.magento.dto';
 
 @Injectable()
 export class AddressService {
+  constructor(private httpService: HttpService) {}
+
+  async deleteAddressById(
+    user: any,
+    addressId: string,
+  ): Promise<AddressDeleteMagentoDto> {
+    const addresses: UserAddressesFlowDto =
+      await this.getUserAddressesInBolivia(user);
+    if (!addresses.addresses.some((a) => a.id == parseInt(addressId))) {
+      throw new HttpException(
+        "This direction doesn't belongs to this user",
+        400,
+      );
+    }
+    const requestConfig: AxiosRequestConfig = {
+      headers: {
+        Authorization: `Bearer ${ConnectionUrl.ACCESS_TOKEN}`,
+      },
+    };
+    return await this.httpService
+      .delete(ConnectionUrl.URL + '/addresses/' + addressId, requestConfig)
+      .pipe(
+        map((response: any) => {
+          const reponseStatus: AddressDeleteMagentoDto =
+            new AddressDeleteMagentoDto();
+          reponseStatus.response = response.data;
+          return reponseStatus;
+        }),
+        catchError((e) => {
+          throw new HttpException(e.response.data, e.response.status);
+        }),
+      )
+      .toPromise();
+  }
+
   async updateAddress(
     costumerId: string,
     address: UserAddressMagentoDto,
@@ -54,7 +90,6 @@ export class AddressService {
       )
       .toPromise();
   }
-  constructor(private httpService: HttpService) {}
 
   public async getUserAddressesInBolivia(
     costumerId: string,

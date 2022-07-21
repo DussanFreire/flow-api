@@ -1,5 +1,14 @@
-import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { AuthUser } from 'src/decorator/user.decorator';
+import { AddressDeleteMagentoDto } from 'src/dto/dto_magento/address_delete.magento.dto';
 import { UserAddressMagentoDto } from 'src/dto/dto_magento/user_address.magento.dto';
 import { UserOrdersMagentoDto } from 'src/dto/dto_magento/user_orders.magento.dto';
 import { AddressService } from 'src/service/address/address.service';
@@ -40,6 +49,14 @@ export class MeController {
     const newAddress: UserAddressMagentoDto =
       await this.addressService.addNewAddress(user, address);
     return newAddress;
+  }
+
+  @Delete('/addresses/:id')
+  async deleteAddress(
+    @AuthUser() user: any,
+    @Param('id') id: string,
+  ): Promise<AddressDeleteMagentoDto> {
+    return await this.addressService.deleteAddressById(user, id);
   }
 
   @Get('/orders')

@@ -1,6 +1,7 @@
 export class UserAddressFlowDto {
   id: number;
-  name: string;
+  firstname: string;
+  lastname: string;
   region: string;
   city: string;
   telephone: string;

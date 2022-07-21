@@ -4,7 +4,7 @@ export enum ConnectionUrl {
 
   URL = URL_STAG,
 
-  ACCESS_TOKEN_PROD = 'oamoppt1z8dqdfhn37mk8ahhdrkhhqy8',
+  ACCESS_TOKEN_PROD = 'zev03c88ggcjuoxnuqe0vv8j4eq8sfzp',
   ACCESS_TOKEN_STAG = '0skkq0kxcze8123ksbprqkh669z10om4',
 
   ACCESS_TOKEN = ACCESS_TOKEN_STAG,
@@ -33,4 +33,5 @@ export enum Cart {
   INVOICE = '/invoice',
   SHIP = '/ship',
   REFUND = '/refund',
+  USER_ORDER = '/orders?searchCriteria[filterGroups][0][filters][0][field]=customer_email&searchCriteria[filterGroups][0][filters][0][value]=',
 }

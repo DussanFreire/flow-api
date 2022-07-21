@@ -10,6 +10,50 @@ import { HttpService } from '@nestjs/axios/dist/http.service';
 
 @Injectable()
 export class AddressService {
+  async updateAddress(
+    costumerId: string,
+    address: UserAddressMagentoDto,
+    id: string,
+  ): Promise<UserAddressMagentoDto> {
+    let userinfo = await this.getUserInfoWithAddressesInMagentoFormat(
+      costumerId,
+    );
+    if (userinfo.customer.addresses.some((a) => a.id == parseInt(id))) {
+      address.id = parseInt(id);
+      for (let index = 0; index < userinfo.customer.addresses.length; index++) {
+        if (userinfo.customer.addresses[index].id == parseInt(id)) {
+          userinfo.customer.addresses[index] = Object.assign(address);
+          userinfo.customer.addresses[index].id = parseInt(id);
+        }
+      }
+    } else {
+      throw new HttpException(
+        "The direction wasn't found in the user direcctions",
+        400,
+      );
+    }
+    const requestConfig: AxiosRequestConfig = this.getRequestConfig(costumerId);
+    return this.httpService
+      .put(ConnectionUrl.URL + '/customers/me', userinfo, requestConfig)
+      .pipe(
+        map(async (response: any) => {
+          let addressesBol = response.data.addresses.filter(
+            (a: any) => a.country_id === 'BO',
+          );
+          addressesBol = addressesBol.map((a): UserAddressFlowDto => {
+            const addressMagentoDto: UserAddressMagentoDto = Object.assign(a);
+            const addressFlowDto: UserAddressFlowDto =
+              this.transferDataToFlowDto(addressMagentoDto);
+            return addressFlowDto;
+          });
+          return addressesBol;
+        }),
+        catchError((e) => {
+          throw new HttpException(e.response.data, e.response.status);
+        }),
+      )
+      .toPromise();
+  }
   constructor(private httpService: HttpService) {}
 
   public async getUserAddressesInBolivia(
@@ -115,7 +159,8 @@ export class AddressService {
   ): UserAddressFlowDto {
     const addressFlowDto: UserAddressFlowDto = new UserAddressFlowDto();
     addressFlowDto.id = addressMagentoDto.id;
-    addressFlowDto.name = `${addressMagentoDto.firstname} ${addressMagentoDto.lastname}`;
+    addressFlowDto.firstname = addressMagentoDto.firstname;
+    addressFlowDto.lastname = addressMagentoDto.lastname;
     addressFlowDto.telephone = addressMagentoDto.telephone;
     addressFlowDto.city = addressMagentoDto.city;
     addressFlowDto.street = addressMagentoDto.street;

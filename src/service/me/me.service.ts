@@ -25,6 +25,7 @@ export class MeService {
         userUpdates.lastname,
         userUpdates.email,
         userUpdates.is_subscribed,
+        userUpdates.dob,
       );
     const customerUpdate: CustomerUpdateDtoMagento =
       new CustomerUpdateDtoMagento(userInfo);
@@ -48,6 +49,7 @@ export class MeService {
           userDto.email = response.data.email;
           userDto.firstname = response.data.firstname;
           userDto.lastname = response.data.lastname;
+          userDto.dob = response.data.dob;
           if (response.data['extension_attributes'] != null) {
             userDto.is_subscribed =
               response.data['extension_attributes']['is_subscribed'];
@@ -97,6 +99,8 @@ export class MeService {
           userDto.email = response.data.email;
           userDto.firstname = response.data.firstname;
           userDto.lastname = response.data.lastname;
+          userDto.dob = response.data.dob;
+
           if (response.data['extension_attributes'] != null) {
             userDto.is_subscribed =
               response.data['extension_attributes']['is_subscribed'];

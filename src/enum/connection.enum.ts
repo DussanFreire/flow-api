@@ -35,3 +35,8 @@ export enum Cart {
   REFUND = '/refund',
   USER_ORDER = '/orders?searchCriteria[filterGroups][0][filters][0][field]=customer_email&searchCriteria[filterGroups][0][filters][0][value]=',
 }
+
+export enum Customer{
+  FORGOT_PASSWORD= '/customers/password',
+  RESET_PASSWORD= '/customers/resetPassword',
+}

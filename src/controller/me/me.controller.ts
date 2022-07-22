@@ -25,8 +25,13 @@ export class MeController {
   ) {}
 
   @Get()
-  async getUserInfo(@AuthUser() user: any) {
+  async getAllUserInfo(@AuthUser() user: any) {
     return await this.meService.getLoginInfo(user);
+  }
+
+  @Get('/user-info')
+  async getUserInfo(@AuthUser() user: any) {
+    return await this.meService.getUserId(user);
   }
 
   @Put()

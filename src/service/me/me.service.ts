@@ -7,6 +7,8 @@ import { AxiosRequestConfig } from 'axios';
 import { ConnectionUrl } from 'src/enum/connection.enum';
 import { catchError, map } from 'rxjs';
 import { UserInfoFlowDto } from 'src/dto/dto_flow/user_info.flow.dto';
+import { CustomerUpdateInfoDtoMagento } from 'src/dto/dto_magento/customer_update_info.magento.dto';
+import { CustomerUpdateDtoMagento } from 'src/dto/dto_magento/customer_update.magento.dto';
 
 @Injectable()
 export class MeService {
@@ -15,7 +17,53 @@ export class MeService {
     private cartService: CartService,
     private categoryService: CategoryService,
   ) {}
-  //   /customers/me
+
+  async updateUserInfo(costumerId: any, userUpdates: any) {
+    const userInfo: CustomerUpdateInfoDtoMagento =
+      new CustomerUpdateInfoDtoMagento(
+        userUpdates.firstname,
+        userUpdates.lastname,
+        userUpdates.email,
+        userUpdates.is_subscribed,
+      );
+    const customerUpdate: CustomerUpdateDtoMagento =
+      new CustomerUpdateDtoMagento(userInfo);
+
+    const requestConfig: AxiosRequestConfig = {
+      headers: {
+        Authorization: costumerId,
+      },
+    };
+
+    const costumerUpdated = await this.httpService
+      .put<UserInfoFlowDto>(
+        ConnectionUrl.URL + '/customers/me',
+        customerUpdate,
+        requestConfig,
+      )
+      .pipe(
+        map(async (response: any) => {
+          const userDto: UserInfoFlowDto = new UserInfoFlowDto();
+          userDto.id_user = response.data.id;
+          userDto.email = response.data.email;
+          userDto.firstname = response.data.firstname;
+          userDto.lastname = response.data.lastname;
+          if (response.data['extension_attributes'] != null) {
+            userDto.is_subscribed =
+              response.data['extension_attributes']['is_subscribed'];
+          } else {
+            userDto.is_subscribed = false;
+          }
+          return userDto;
+        }),
+        catchError((e) => {
+          throw new HttpException(e.response.data, e.response.status);
+        }),
+      )
+      .toPromise();
+
+    return costumerUpdated;
+  }
   async getLoginInfo(token: string) {
     const loginPromises = [
       this.categoryService.getCategories(),

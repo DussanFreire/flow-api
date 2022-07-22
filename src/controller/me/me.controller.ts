@@ -9,6 +9,7 @@ import {
 } from '@nestjs/common';
 import { AuthUser } from 'src/decorator/user.decorator';
 import { AddressDeleteMagentoDto } from 'src/dto/dto_magento/address_delete.magento.dto';
+import { CustomerUpdateInfoDtoMagento } from 'src/dto/dto_magento/customer_update_info.magento.dto';
 import { UserAddressMagentoDto } from 'src/dto/dto_magento/user_address.magento.dto';
 import { UserOrdersMagentoDto } from 'src/dto/dto_magento/user_orders.magento.dto';
 import { AddressService } from 'src/service/address/address.service';
@@ -26,6 +27,11 @@ export class MeController {
   @Get()
   async getUserInfo(@AuthUser() user: any) {
     return await this.meService.getLoginInfo(user);
+  }
+
+  @Put()
+  async updateUserInfo(@AuthUser() user: any, @Body() userUpdates: any) {
+    return await this.meService.updateUserInfo(user, userUpdates);
   }
 
   @Get('/addresses')

@@ -1,6 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { map, catchError } from 'rxjs';
-import { ConnectionUrl, Cart } from 'src/enum/connection.enum';
+import { ConnectionUrl, Cart } from '../../enum/connection.enum';
 import { AxiosRequestConfig } from 'axios';
 import { HttpService } from '@nestjs/axios';
 @Injectable()

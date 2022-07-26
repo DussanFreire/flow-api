@@ -1,14 +1,14 @@
 import { HttpService } from '@nestjs/axios';
 import { HttpException, Injectable } from '@nestjs/common';
-import { CartFlowDto } from 'src/dto/dto_flow/cart.flow.dto';
+import { CartFlowDto } from '../../dto/dto_flow/cart/cart-service/cart.flow.dto';
 import { CartService } from '../cart/cart.service';
 import { CategoryService } from '../category/category.service';
 import { AxiosRequestConfig } from 'axios';
-import { ConnectionUrl } from 'src/enum/connection.enum';
+import { ConnectionUrl, Customer } from '../../enum/connection.enum';
 import { catchError, map } from 'rxjs';
-import { UserInfoFlowDto } from 'src/dto/dto_flow/user_info.flow.dto';
-import { CustomerUpdateInfoDtoMagento } from 'src/dto/dto_magento/customer_update_info.magento.dto';
-import { CustomerUpdateDtoMagento } from 'src/dto/dto_magento/customer_update.magento.dto';
+import { UserInfoFlowDto } from '../../dto/dto_flow/me/user_info.flow.dto';
+import { CustomerUpdateInfoDtoMagento } from '../../dto/dto_magento/customer_update_info.magento.dto';
+import { CustomerUpdateDtoMagento } from '../../dto/dto_magento/customer_update.magento.dto';
 
 @Injectable()
 export class MeService {
@@ -91,7 +91,7 @@ export class MeService {
     };
 
     const userInfo = await this.httpService
-      .get<UserInfoFlowDto>(ConnectionUrl.URL + '/customers/me', requestConfig)
+      .get<UserInfoFlowDto>(ConnectionUrl.URL + Customer.ME, requestConfig)
       .pipe(
         map(async (response: any) => {
           const userDto: UserInfoFlowDto = new UserInfoFlowDto();

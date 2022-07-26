@@ -1,6 +1,6 @@
 import { Type } from 'class-transformer';
 import { IsNotEmpty, IsObject } from 'class-validator';
-import { ShippingBillingInfoDto } from './shipping_billingInfo.dto';
+import { ShippingBillingInfoDto } from './cart-order/shipping_billingInfo.dto';
 
 class Payment {
   @IsNotEmpty()

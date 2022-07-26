@@ -1,4 +1,4 @@
-import { CategoryDtoMagento } from './category.magento.dto';
+import { CategoryDtoMagento } from '../category/category.magento.dto';
 import { ProductMagentoDto } from './product.magento.dto';
 
 export class ProductListMagentoDto {

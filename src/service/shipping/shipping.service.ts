@@ -2,9 +2,9 @@ import { HttpService } from '@nestjs/axios';
 import { HttpException, Injectable } from '@nestjs/common';
 import { AxiosRequestConfig } from 'axios';
 import { catchError, map } from 'rxjs';
-import { CartShippingFlowDto } from 'src/dto/dto_flow/cart_shipping_cost.flow.dto';
-import { ShippingDataMagentoDto } from 'src/dto/dto_magento/shipping_data.megento.dto';
-import { ConnectionUrl } from 'src/enum/connection.enum';
+import { CartShippingFlowDto } from '../../dto/dto_flow/cart/shipping-service/cart_shipping_cost.flow.dto';
+import { ShippingDataMagentoDto } from '../../dto/dto_magento/cart/shipping-service/shipping_data.megento.dto';
+import { Cart, ConnectionUrl } from '../../enum/connection.enum';
 
 @Injectable()
 export class ShippingService {
@@ -20,7 +20,7 @@ export class ShippingService {
     shippingData.address_id = addressId;
 
     const url =
-      ConnectionUrl.URL + '/carts/mine/estimate-shipping-methods-by-address-id';
+      ConnectionUrl.URL + Cart.MINE + Cart.ESTIMATE_SHIPPING;
 
     const shippingResults = await this.httpService
       .post(url, shippingData, requestConfig)

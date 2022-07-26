@@ -1,21 +1,23 @@
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { AuthUser } from '../../decorator/user.decorator';
+import { UserAddressMagentoDto } from '../../dto/dto_magento/me/user_address.magento.dto';
+import { AddressService } from '../../service/address/address.service';
+import { MeService } from '../../service/me/me.service';
 import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-} from '@nestjs/common';
-import { AuthUser } from 'src/decorator/user.decorator';
-import { AddressDeleteMagentoDto } from 'src/dto/dto_magento/address_delete.magento.dto';
-import { CustomerUpdateInfoDtoMagento } from 'src/dto/dto_magento/customer_update_info.magento.dto';
-import { UserAddressMagentoDto } from 'src/dto/dto_magento/user_address.magento.dto';
-import { UserOrdersMagentoDto } from 'src/dto/dto_magento/user_orders.magento.dto';
-import { AddressService } from 'src/service/address/address.service';
-import { MeService } from 'src/service/me/me.service';
+  ApiBadRequestResponse,
+  ApiBearerAuth,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiOperation,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { OrderService } from 'src/service/order/order.service';
+import { AddressDeleteMagentoDto } from 'src/dto/dto_magento/address_delete.magento.dto';
+import { UserOrdersMagentoDto } from 'src/dto/dto_magento/user_orders.magento.dto';
 
+@ApiTags('Me')
+@ApiBearerAuth()
 @Controller('me')
 export class MeController {
   constructor(
@@ -25,7 +27,11 @@ export class MeController {
   ) {}
 
   @Get()
-  async getAllUserInfo(@AuthUser() user: any) {
+  @ApiOperation({summary: 'Get login info.'})
+  @ApiCreatedResponse({description: 'OK response.'})
+  @ApiUnauthorizedResponse({description: 'Not provided, invalid or expired token.'})
+  @ApiBadRequestResponse({description:'Bad request.'})
+  async getUsegetLoginInforInfo(@AuthUser() user: any) {
     return await this.meService.getLoginInfo(user);
   }
 
@@ -40,6 +46,10 @@ export class MeController {
   }
 
   @Get('/addresses')
+  @ApiOperation({summary: 'Get addresses of a customer.'})
+  @ApiCreatedResponse({description: 'OK response.'})
+  @ApiUnauthorizedResponse({description: 'Not provided, invalid or expired token.'})
+  @ApiBadRequestResponse({description:'Bad request.'})
   async getUserAddressesInBolivia(@AuthUser() user: any) {
     return await this.addressService.getUserAddressesInBolivia(user);
   }
@@ -56,10 +66,13 @@ export class MeController {
   }
 
   @Post('/addresses')
-  async addNewAddress(@AuthUser() user: any, @Body() address) {
-    const newAddress: UserAddressMagentoDto =
-      await this.addressService.addNewAddress(user, address);
-    return newAddress;
+  @ApiOperation({summary: 'Add a new address.'})
+  @ApiCreatedResponse({description: 'OK response.'})
+  @ApiUnauthorizedResponse({description: 'Not provided, invalid or expired token.'})
+  @ApiBadRequestResponse({description:'Bad request.'})
+  @ApiBody({type: UserAddressMagentoDto})
+  async addNewAddres(@AuthUser() user: any, @Body() address: UserAddressMagentoDto) {
+    return await this.addressService.addNewAddress(user, address);
   }
 
   @Delete('/addresses/:id')

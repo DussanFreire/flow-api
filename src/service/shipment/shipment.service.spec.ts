@@ -2,17 +2,31 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ShipmentService } from './shipment.service';
 
 describe('ShipmentService', () => {
-  let service: ShipmentService;
-
+  let shipmentService: ShipmentService;
+  const mockShipment= {
+    generateShipment: jest.fn(),
+  }
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [ShipmentService],
+      providers: [
+        ShipmentService,
+        {
+          provide: ShipmentService,
+          useValue: mockShipment
+        }
+      ],
     }).compile();
 
-    service = module.get<ShipmentService>(ShipmentService);
+    shipmentService = module.get<ShipmentService>(ShipmentService);
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(shipmentService).toBeDefined();
+  });
+  it('should generate shipment', async () => {
+    const spyShipmentService = jest
+    .spyOn(shipmentService, 'generateShipment')
+    await shipmentService.generateShipment('312');
+    expect(spyShipmentService).toHaveBeenCalled;
   });
 });

@@ -1,9 +1,9 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { AxiosRequestConfig } from 'axios';
 import { map, catchError } from 'rxjs';
-import { PaymentInformationDto } from 'src/dto/dto_magento/cart.payment_info.dto';
-import { OrderMagentoDto } from 'src/dto/dto_magento/order.magento.dto';
-import { ConnectionUrl, Cart } from 'src/enum/connection.enum';
+import { PaymentInformationDto } from 'src/dto/dto_magento/cart/cart.payment_info.dto';
+import { OrderMagentoDto } from '../../dto/dto_magento/cart/order.magento.dto';
+import { ConnectionUrl, Cart } from '../../enum/connection.enum';
 import { HttpService } from '@nestjs/axios';
 import { UserOrdersMagentoDto } from 'src/dto/dto_magento/user_orders.magento.dto';
 import { MeService } from '../me/me.service';

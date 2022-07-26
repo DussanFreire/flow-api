@@ -27,6 +27,7 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/passport": "^8.2.1",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^6.0.4",
     "@prisma/client": "^3.11.1",
     "catcherror": "^0.0.4",
     "class-transformer": "^0.5.1",

@@ -1,8 +1,8 @@
 import { HttpService } from '@nestjs/axios';
 import { HttpException, Injectable } from '@nestjs/common';
-import { map, Observable } from 'rxjs';
-import { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { ConnectionUrl } from '../../enum/connection.enum';
+import { map } from 'rxjs';
+import { AxiosRequestConfig } from 'axios';
+import { ConnectionUrl, Customer } from '../../enum/connection.enum';
 import { catchError } from 'rxjs/operators';
 import { CustomerMagentoDto } from '../../dto/dto_magento/customer/customer.magento.dto';
 import { CustomerFlowDto } from '../../dto/dto_flow/customer/customer.flow.dto';
@@ -31,7 +31,7 @@ export class CustomerService {
     magentoCostumer.password = dataCustomer.password;
 
     return this.httpService
-      .post(ConnectionUrl.URL + '/customers', magentoCostumer, requestConfig)
+      .post(ConnectionUrl.URL + Customer.CUSTOMER, magentoCostumer, requestConfig)
       .pipe(
         map((response) => {
           const flowCostumer = new CustomerFlowDto(
@@ -56,7 +56,7 @@ export class CustomerService {
   };
   
   return this.httpService
-      .get(ConnectionUrl.URL + '/customers/me', requestConfig)
+      .get(ConnectionUrl.URL + Customer.ME, requestConfig)
       .pipe(
         map((response) => {
           const flowCostumer = new CustomerFlowDto(

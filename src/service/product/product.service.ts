@@ -93,23 +93,4 @@ export class ProductService {
     });
     return this.paginateService.paginatedResults(respuesta.productList, page);
   }
-  //No useful funtion **Never used
-  public async getBrandFromBrandId(brandid: Array<number>) {
-    let brandsResponse = [];
-    const brands = await this.httpService
-      .get(ConnectionUrl.URL + FilterProducts.PRODUCT_BRAND)
-      .pipe(
-        map((response: any) => response.data),
-        catchError((e) => {
-          throw new HttpException(e.response.data, e.response.status);
-        }),
-      )
-      .toPromise();
-    brandid.forEach(function (info) {
-      const idres = brands.find((data) => data.value == info);
-      brandsResponse.push(idres);
-    });
-    return brandsResponse;
-  }
-  public getAllBrandsCategory() {}
 }

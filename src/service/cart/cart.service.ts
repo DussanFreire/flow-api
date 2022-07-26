@@ -6,7 +6,7 @@ import { CartMagentoDto } from 'src/dto/dto_magento/cart/cart-service/cart_produ
 import { CartFlowProductDto } from '../../dto/dto_flow/cart/cart-service/cart_product.flow.dto';
 import { CartFlowDto } from '../../dto/dto_flow/cart/cart-service/cart.flow.dto';
 import { CartPatchProductFlowDto } from 'src/dto/dto_flow/cart/cart_patch_product.flow.dto';
-import { ConnectionUrl, FilterProducts } from '../../enum/connection.enum';
+import { Cart, ConnectionUrl, FilterProducts, Product } from '../../enum/connection.enum';
 import { CartTotalFlowDto } from '../../dto/dto_flow/cart/cart-service/cart_totals.flow.dto';
 import { NewCartMagentoDto } from '../../dto/dto_magento/cart/cart-service/new_cart.magento.dto';
 import { CartItemDtoFlow } from 'src/dto/dto_flow/cart/cart-service/cart_item.flow.dto';
@@ -22,7 +22,7 @@ export class CartService {
       },
     };
 
-    const url = ConnectionUrl.URL + '/carts/mine';
+    const url = ConnectionUrl.URL + Cart.MINE;
 
     const cart = await this.httpService
       .post(url, null, requestConfig)
@@ -51,7 +51,7 @@ export class CartService {
     let promiseItems: Promise<any>[] = itemsList.map(
       (el: CartItemDtoFlow): Promise<any> =>
         this.httpService
-          .get(ConnectionUrl.URL + `/products/${el['sku']}`, requestConfig)
+          .get(ConnectionUrl.URL + Product.PRODUCTS + `/${el['sku']}`, requestConfig)
           .pipe(
             map((item) => {
               let imageUrl: string = '';
@@ -76,7 +76,7 @@ export class CartService {
   }
   private async getOnlyTheCart(requestConfig: AxiosRequestConfig) {
     const cart = this.httpService
-      .get<CartFlowDto>(ConnectionUrl.URL + '/carts/mine', requestConfig)
+      .get<CartFlowDto>(ConnectionUrl.URL + Cart.MINE, requestConfig)
       .pipe(
         map(async (response: any) => {
           const cartDto: CartFlowDto = new CartFlowDto();
@@ -132,7 +132,7 @@ export class CartService {
         Authorization: costumerId,
       },
     };
-    const url = ConnectionUrl.URL + `/carts/mine/items/${cartProductId}`;
+    const url = ConnectionUrl.URL + Cart.MINE + Cart.ITEMS + `/${cartProductId}`;
 
     const cart = await this.httpService
       .delete<any>(url, requestConfig)
@@ -159,7 +159,7 @@ export class CartService {
         Authorization: costumerId,
       },
     };
-    const url = ConnectionUrl.URL + '/carts/mine/items';
+    const url = ConnectionUrl.URL + Cart.MINE + Cart.ITEMS;
 
     try {
       const cart = await this.httpService
@@ -195,7 +195,7 @@ export class CartService {
         Authorization: costumerId,
       },
     };
-    const url = ConnectionUrl.URL + `/carts/mine/items/${itemId}`;
+    const url = ConnectionUrl.URL + Cart.MINE + Cart.ITEMS + `/${itemId}`;
     const cart = await this.httpService
       .put(url, { cartItem: patchProduct }, requestConfig)
       .pipe(
@@ -226,7 +226,7 @@ export class CartService {
 
     const cart = await this.httpService
       .get<CartTotalFlowDto>(
-        ConnectionUrl.URL + '/carts/mine/totals',
+        ConnectionUrl.URL + Cart.MINE + Cart.TOTALS,
         requestConfig,
       )
       .pipe(

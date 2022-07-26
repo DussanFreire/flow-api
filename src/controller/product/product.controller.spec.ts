@@ -39,9 +39,5 @@ describe('ProductController', () => {
       productController.getCategories(productCategory as ProductFilterMagentoDto);
       expect(productService.getProductByCategoryID).toHaveBeenCalled();
     });
-    it('should get brand from brandId', () => {
-      productController.getBrandFromBranId(brandId);
-      expect(productService.getBrandFromBrandId).toHaveBeenCalled();
-    });
   })
 });

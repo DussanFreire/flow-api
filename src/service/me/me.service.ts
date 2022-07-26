@@ -4,8 +4,8 @@ import { CartFlowDto } from 'src/dto/dto_flow/cart/cart-service/cart.flow.dto';
 import { CartService } from '../cart/cart.service';
 import { CategoryService } from '../category/category.service';
 import { AxiosRequestConfig } from 'axios';
-import { ConnectionUrl } from '../../enum/connection.enum';
-import { catchError, filter, map } from 'rxjs';
+import { ConnectionUrl, Customer } from '../../enum/connection.enum';
+import { catchError, map } from 'rxjs';
 import { UserInfoFlowDto } from '../../dto/dto_flow/me/user_info.flow.dto';
 
 @Injectable()
@@ -15,7 +15,7 @@ export class MeService {
     private cartService: CartService,
     private categoryService: CategoryService,
   ) {}
-  //   /customers/me
+
   async getLoginInfo(token: string) {
     const loginPromises = [
       this.categoryService.getCategories(),
@@ -41,7 +41,7 @@ export class MeService {
     };
 
     const userInfo = await this.httpService
-      .get<UserInfoFlowDto>(ConnectionUrl.URL + '/customers/me', requestConfig)
+      .get<UserInfoFlowDto>(ConnectionUrl.URL + Customer.ME, requestConfig)
       .pipe(
         map(async (response: any) => {
           const userDto: UserInfoFlowDto = new UserInfoFlowDto();

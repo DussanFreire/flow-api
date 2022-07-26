@@ -4,7 +4,7 @@ import { UserAddressFlowDto } from '../../dto/dto_flow/me/address-service/user_a
 import { UserAddressesFlowDto } from '../../dto/dto_flow/me/address-service/user_addresses.flow.dto';
 import { UserAddressMagentoDto } from 'src/dto/dto_magento/me/user_address.magento.dto';
 import { UserInfoMagento } from '../../dto/dto_magento/me/user_info.magento.dto';
-import { ConnectionUrl } from '../../enum/connection.enum';
+import { ConnectionUrl, Customer } from '../../enum/connection.enum';
 import { AxiosRequestConfig } from 'axios';
 import { HttpService } from '@nestjs/axios/dist/http.service';
 
@@ -19,7 +19,7 @@ export class AddressService {
     const addresses = new UserAddressesFlowDto();
     addresses.addresses = await this.httpService
       .get<UserAddressMagentoDto>(
-        ConnectionUrl.URL + '/customers/me',
+        ConnectionUrl.URL + Customer.ME,
         requestConfig,
       )
       .pipe(
@@ -54,7 +54,7 @@ export class AddressService {
     userinfo.customer.addresses.push(newAddress);
     const requestConfig: AxiosRequestConfig = this.getRequestConfig(costumerId);
     return this.httpService
-      .put(ConnectionUrl.URL + '/customers/me', userinfo, requestConfig)
+      .put(ConnectionUrl.URL + Customer.ME, userinfo, requestConfig)
       .pipe(
         map(async (response: any) => {
           let addressesBol = response.data.addresses.filter(
@@ -81,7 +81,7 @@ export class AddressService {
     const requestConfig: AxiosRequestConfig = this.getRequestConfig(costumerId);
 
     return this.httpService
-      .get<UserInfoMagento>(ConnectionUrl.URL + '/customers/me', requestConfig)
+      .get<UserInfoMagento>(ConnectionUrl.URL + Customer.ME, requestConfig)
       .pipe(
         map(async (response: any) => {
           const customerInfo: UserInfoMagento = new UserInfoMagento();

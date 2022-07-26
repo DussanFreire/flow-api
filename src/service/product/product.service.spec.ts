@@ -42,10 +42,4 @@ describe('ProductService', () => {
     await productService.getProductByCategoryID(productCategory as ProductFilterMagentoDto);
     expect(spyProductCategoryService).toHaveBeenCalled;
   });
-  it('should get brand from brandId', async () => {
-    const spyProductCategoryService = jest
-    .spyOn(productService, 'getBrandFromBrandId')
-    await productService.getBrandFromBrandId(brandId);
-    expect(spyProductCategoryService).toHaveBeenCalled;
-  });
 });

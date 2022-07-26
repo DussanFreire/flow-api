@@ -26,6 +26,7 @@ export enum FilterProducts {
 }
 
 export enum Cart {
+  MINE = '/carts/mine',
   PAYMENTMETHODS = '/carts/mine/payment-methods',
   SET_SHIPPING_BILLING_ADDRESS = '/carts/mine/shipping-information',
   PAYMENT_INFORMATION = '/carts/mine/payment-information',
@@ -33,4 +34,24 @@ export enum Cart {
   INVOICE = '/invoice',
   SHIP = '/ship',
   REFUND = '/refund',
+  ITEMS = '/items',
+  TOTALS = '/totals',
+  ESTIMATE_SHIPPING = '/estimate-shipping-methods-by-address-id'
+}
+
+export enum Customer{
+  CUSTOMER = '/customers',
+  ME = '/customers/me',
+}
+
+export enum Product{
+  PRODUCTS = '/products',
+}
+
+export enum Category{
+  CATEGORIES = '/categories',
+}
+
+export enum Token{
+  INTEGRATION = '/integration/customer/token',
 }

@@ -12,16 +12,9 @@ import { CartService } from '../../service/cart/cart.service';
 import { CartMagentoDto } from '../../dto/dto_magento/cart/cart-service/cart_product.magento.dto';
 import { CartPatchProductFlowDto } from '../../dto/dto_flow/cart/cart_patch_product.flow.dto';
 import { ShippingService } from '../../service/shipping/shipping.service';
-import { CartShippingInformationDto } from 'src/dto/dto_magento/cart/cart-order/cart.shipping_information.magento.dto';
-import { PaymentInformationDto } from 'src/dto/dto_magento/cart/cart.payment_info.dto';
-import { InvoiceDto } from 'src/dto/dto_magento/cart/cart-order/cart.invoice.magento.dto';
 import { OrderFlowDto } from '../../dto/dto_flow/cart/order.flow.dto';
-import { InvoiceService } from 'src/service/invoice/invoice.service';
 import { RefundService } from '../../service/refund/refund.service';
 import { PaymentMethodsService } from '../../service/payment_methods/payment_methods.service';
-import { BillingAddressService } from 'src/service/billing_address/billing_address.service';
-import { OrderService } from 'src/service/order/order.service';
-import { ShipmentService } from 'src/service/shipment/shipment.service';
 import { CartOrderFlowService } from '../../service/cart_order_flow/cart_order_flow.service';
 import {
   ApiBadRequestResponse,

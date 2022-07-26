@@ -4,7 +4,7 @@ import { catchError, map } from 'rxjs';
 import { CategoryDtoMagento } from 'src/dto/dto_magento/category/category.magento.dto';
 import { CategoryListMagentoDto } from '../../dto/dto_magento/category/category_list.magento.dto';
 import { AxiosRequestConfig } from 'axios';
-import { ConnectionUrl } from '../../enum/connection.enum';
+import { Category, ConnectionUrl } from '../../enum/connection.enum';
 @Injectable()
 export class CategoryService {
   constructor(private httpService: HttpService) {}
@@ -29,7 +29,7 @@ export class CategoryService {
       },
     };
 
-    let url = ConnectionUrl.URL + '/categories';
+    let url = ConnectionUrl.URL + Category.CATEGORIES;
 
     const categories = await this.httpService
       .get<CategoryListMagentoDto>(url, requestConfig)

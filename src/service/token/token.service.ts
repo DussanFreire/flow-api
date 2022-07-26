@@ -1,7 +1,7 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { map } from 'rxjs';
-import { ConnectionUrl } from '../../enum/connection.enum';
+import { ConnectionUrl, Token } from '../../enum/connection.enum';
 import { catchError } from 'rxjs/operators';
 import { LoginFlowDto } from 'src/dto/dto_flow/token/login.flow.dto';
 import { TokenMagentoDto } from '../../dto/dto_magento/token/token.magento.dto';
@@ -13,7 +13,7 @@ export class TokenService {
   getToken(loginData: LoginFlowDto): Promise<TokenMagentoDto> {
     return this.httpService
       .post<TokenMagentoDto>(
-        ConnectionUrl.URL + '/integration/customer/token',
+        ConnectionUrl.URL + Token.INTEGRATION,
         loginData,
       )
       .pipe(

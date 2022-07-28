@@ -7,7 +7,7 @@ import { UserInfoMagento } from '../../dto/dto_magento/me/user_info.magento.dto'
 import { ConnectionUrl, Customer } from '../../enum/connection.enum';
 import { AxiosRequestConfig } from 'axios';
 import { HttpService } from '@nestjs/axios/dist/http.service';
-import { AddressDeleteMagentoDto } from 'src/dto/dto_magento/address_delete.magento.dto';
+import { AddressDeleteMagentoDto } from '../../dto/dto_magento/address/address_delete.magento.dto';
 
 @Injectable()
 export class AddressService {

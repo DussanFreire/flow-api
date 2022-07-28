@@ -1,5 +1,5 @@
 export class UserInfoFlowDto {
-  firstname: number;
+  firstname: string;
   lastname: string;
   email: string;
   dob: string;

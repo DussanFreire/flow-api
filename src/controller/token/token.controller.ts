@@ -3,8 +3,9 @@ import { LoginFlowDto } from '../../dto/dto_flow/token/login.flow.dto';
 import { TokenService } from '../../service/token/token.service';
 import { 
   ApiBadRequestResponse, 
+  ApiBody, 
   ApiCreatedResponse, 
-  ApiOperation, ApiQuery, ApiTags, 
+  ApiOperation, ApiTags, 
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 
@@ -18,7 +19,7 @@ export class TokenController {
   @ApiCreatedResponse({description: 'OK response.'})
   @ApiUnauthorizedResponse({description: 'Not provided, invalid or expired token.'})
   @ApiBadRequestResponse({description:'Bad request.'})
-  @ApiQuery({type: LoginFlowDto})
+  @ApiBody({type: LoginFlowDto})
   async getToken(@Body() loginData: LoginFlowDto) {
     return await this.loginService.getToken(loginData);
   }

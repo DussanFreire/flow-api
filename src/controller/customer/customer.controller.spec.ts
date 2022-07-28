@@ -1,5 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CustomerFlowDto } from 'src/dto/dto_flow/customer/customer.flow.dto';
+import { ResetPassword } from '../../dto/dto_magento/customer/reset.password.magento.dto';
+import { CustomerFlowDto } from '../../dto/dto_flow/customer/customer.flow.dto';
+import { ForgotPassword } from '../../dto/dto_magento/customer/forgot.password.magento.dto';
 import { CustomerService } from '../../service/customer/customer.service';
 import { CustomerController } from './customer.controller';
 
@@ -9,6 +11,8 @@ describe('CustomerController', () => {
   const mockCustomerService= {
     createCustomer:jest.fn(),
     getInfo: jest.fn(),
+    forgotPassword: jest.fn(),
+    resetPassword: jest.fn(),
   }
   const customerData= {
     "email": "jp2409@gmail.com",
@@ -16,6 +20,15 @@ describe('CustomerController', () => {
     "lastName": "nuñez",
     "dob": "24-09-1999",
     "password": "test123!"
+  }
+  const forgotPassword= {
+      "email": "juanpanm2409@gmail.com",
+      "template": "email_reset"
+  }
+  const resetPassword = {
+    "email": "juanpanm2409@gmail.com",
+    "resetToken": "ypoPzCldCO2gwbDirinPN9O5C4FUjUrU",
+    "newPassword":"Password2!"
   }
   const userId= 'dkden8mlfwscsblgmvdxfr30duaoviht';
   beforeEach(async () => {
@@ -40,6 +53,16 @@ describe('CustomerController', () => {
     it('should get info', () =>{
       customerController.getInfo(userId);
       expect(customerService.getInfo).toHaveBeenCalled();
+    });
+  });
+  describe('password', () =>{
+    it('should reset password', () =>{
+      customerController.forgotPassword(forgotPassword as ForgotPassword);
+      expect(customerService.forgotPassword).toHaveBeenCalled();
+    });
+    it('should change password', () =>{
+      customerController.resetPassword(resetPassword as ResetPassword);
+      expect(customerService.resetPassword).toHaveBeenCalled();
     });
   });
 });

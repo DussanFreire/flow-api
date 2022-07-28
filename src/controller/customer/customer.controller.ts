@@ -11,8 +11,8 @@ import {
   ApiTags,
   ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
-import { ForgotPassword } from 'src/dto/dto_magento/forgot.password.magento.dto';
-import { ResetPassword } from 'src/dto/dto_magento/reset.password.magento.dto';
+import { ForgotPassword } from '../../dto/dto_magento/customer/forgot.password.magento.dto';
+import { ResetPassword } from '../../dto/dto_magento/customer/reset.password.magento.dto';
 
 @ApiTags('Customers')
 @Controller('customers')
@@ -38,10 +38,19 @@ export class CustomerController {
     return await this.customerService.getInfo(token);
   }
   @Put('password')
+  @ApiOperation({summary: 'Recuperar cuenta restableciendo contraseña.'})
+  @ApiCreatedResponse({description: 'OK response.'})
+  @ApiUnauthorizedResponse({description: 'Not provided, invalid or expired token.'})
+  @ApiBadRequestResponse({description:'Bad request.'})
+  @ApiBody({type: ForgotPassword})
   async forgotPassword(@Body() infoEmail:ForgotPassword) {
     return await this.customerService.forgotPassword(infoEmail);
   }
   @Post('reset-password')
+  @ApiOperation({summary: 'Cambiar contraseña.'})
+  @ApiCreatedResponse({description: 'OK response.'})
+  @ApiUnauthorizedResponse({description: 'Not provided, invalid or expired token.'})
+  @ApiBadRequestResponse({description:'Bad request.'})
   async resetPassword(@Body() infoEmail:ResetPassword) {
     return await this.customerService.resetPassword(infoEmail);
   }

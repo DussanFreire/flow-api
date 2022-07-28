@@ -1,22 +1,13 @@
 import { HttpService } from '@nestjs/axios';
 import { HttpException, Injectable } from '@nestjs/common';
-<<<<<<< HEAD
-import { map, Observable } from 'rxjs';
-import { AxiosResponse, AxiosRequestConfig } from 'axios';
-import { ConnectionUrl, Customer } from 'src/enum/connection.enum';
-import { catchError } from 'rxjs/operators';
-import { CustomerMagentoDto } from 'src/dto/dto_magento/customer.magento.dto';
-import { CustomerFlowDto } from 'src/dto/dto_flow/customer.flow.dto';
-import { ForgotPassword } from 'src/dto/dto_magento/forgot.password.magento.dto';
-import { ResetPassword } from 'src/dto/dto_magento/reset.password.magento.dto';
-=======
 import { map } from 'rxjs';
 import { AxiosRequestConfig } from 'axios';
 import { ConnectionUrl, Customer } from '../../enum/connection.enum';
 import { catchError } from 'rxjs/operators';
 import { CustomerMagentoDto } from '../../dto/dto_magento/customer/customer.magento.dto';
 import { CustomerFlowDto } from '../../dto/dto_flow/customer/customer.flow.dto';
->>>>>>> refactor_unit-test
+import { ForgotPassword } from '../../dto/dto_magento/customer/forgot.password.magento.dto';
+import { ResetPassword } from '../../dto/dto_magento/customer/reset.password.magento.dto';
 
 @Injectable()
 export class CustomerService {

@@ -9,7 +9,7 @@ import { CartPatchProductFlowDto } from 'src/dto/dto_flow/cart/cart_patch_produc
 import { Cart, ConnectionUrl, FilterProducts, Product } from '../../enum/connection.enum';
 import { CartTotalFlowDto } from '../../dto/dto_flow/cart/cart-service/cart_totals.flow.dto';
 import { NewCartMagentoDto } from '../../dto/dto_magento/cart/cart-service/new_cart.magento.dto';
-import { CartItemDtoFlow } from 'src/dto/dto_flow/cart/cart-service/cart_item.flow.dto';
+import { CartItemDtoFlow } from '../../dto/dto_flow/cart/cart-service/cart_item.flow.dto';
 
 @Injectable()
 export class CartService {

@@ -5,7 +5,7 @@ import { PaymentInformationDto } from 'src/dto/dto_magento/cart/cart.payment_inf
 import { OrderMagentoDto } from '../../dto/dto_magento/cart/order.magento.dto';
 import { ConnectionUrl, Cart } from '../../enum/connection.enum';
 import { HttpService } from '@nestjs/axios';
-import { UserOrdersMagentoDto } from 'src/dto/dto_magento/user_orders.magento.dto';
+import { UserOrdersMagentoDto } from '../../dto/dto_magento/order/user_orders.magento.dto';
 import { MeService } from '../me/me.service';
 @Injectable()
 export class OrderService {

@@ -14,6 +14,7 @@ describe('CartService', () => {
     addToProductToCart: jest.fn(),
     updateQuantityProduct: jest.fn(),
     getCartTotals: jest.fn(),
+    getItems:jest.fn(),
   }
   const cart={
     customerId: 'ajwra5ithuaehx2x5hsh013hn79xzem4',
@@ -63,6 +64,8 @@ describe('CartService', () => {
       items_qty: 2
     }
   }
+  const getItems = cartinfo.cart.items;
+  
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
@@ -120,6 +123,13 @@ describe('CartService', () => {
     .spyOn(cartService, 'getCartTotals')
     .mockResolvedValue(cartTotals as unknown as CartTotalFlowDto);
     await cartService.getCartTotals(cart.customerId);
+    expect(spyCartService).toHaveBeenCalled;
+  });
+  it('should get cart totals', async () => {
+    const spyCartService = jest
+    .spyOn(cartService, 'getItems')
+    .mockResolvedValue(getItems);
+    await cartService.getItems(getItems);
     expect(spyCartService).toHaveBeenCalled;
   });
 });

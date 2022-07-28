@@ -7,8 +7,9 @@ import { AxiosRequestConfig } from 'axios';
 import { ConnectionUrl, Customer } from '../../enum/connection.enum';
 import { catchError, map } from 'rxjs';
 import { UserInfoFlowDto } from '../../dto/dto_flow/me/user_info.flow.dto';
-import { CustomerUpdateInfoDtoMagento } from '../../dto/dto_magento/customer_update_info.magento.dto';
-import { CustomerUpdateDtoMagento } from '../../dto/dto_magento/customer_update.magento.dto';
+import { CustomerUpdateInfoDtoMagento } from '../../dto/dto_magento/customer/customer_update_info.magento.dto';
+import { CustomerUpdateDtoMagento } from '../../dto/dto_magento/customer/customer_update.magento.dto';
+import { CustomerUpdateInfoDtoFlow } from '../../dto/dto_flow/customer/customer_update_info.flow.dto';
 
 @Injectable()
 export class MeService {
@@ -18,7 +19,7 @@ export class MeService {
     private categoryService: CategoryService,
   ) {}
 
-  async updateUserInfo(costumerId: any, userUpdates: any) {
+  async updateUserInfo(costumerId: any, userUpdates: CustomerUpdateInfoDtoFlow) {
     const userInfo: CustomerUpdateInfoDtoMagento =
       new CustomerUpdateInfoDtoMagento(
         userUpdates.firstname,
@@ -82,7 +83,6 @@ export class MeService {
 
     return { cart_info, user_info, categories };
   }
-
   public async getUserId(costumerId: string): Promise<UserInfoFlowDto> {
     const requestConfig: AxiosRequestConfig = {
       headers: {

@@ -5,6 +5,7 @@ describe('OrderService', () => {
   let orderService: OrderService;
   const mockOrder= {
     generateOrder:jest.fn(),
+    getUserOrders:jest.fn(),
   }
   const generateOrder= {
     payment_method:  {
@@ -56,6 +57,12 @@ describe('OrderService', () => {
     const spyOrderService = jest
     .spyOn(orderService, 'generateOrder')
     await orderService.generateOrder('dkden8mlfwscsblgmvdxfr30duaoviht', generateOrder);
+    expect(spyOrderService).toHaveBeenCalled;
+  });
+  it('should get customer orders', async () => {
+    const spyOrderService = jest
+    .spyOn(orderService, 'getUserOrders')
+    await orderService.getUserOrders('dkden8mlfwscsblgmvdxfr30duaoviht');
     expect(spyOrderService).toHaveBeenCalled;
   });
 });

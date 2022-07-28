@@ -3,8 +3,9 @@ import { ProductFilterMagentoDto } from '../../dto/dto_magento/product/product.f
 import { ProductService } from '../../service/product/product.service';
 import { 
     ApiBadRequestResponse, 
+    ApiBody, 
     ApiCreatedResponse, 
-    ApiOperation, ApiQuery, ApiTags, 
+    ApiOperation, ApiTags, 
     ApiUnauthorizedResponse,
 } from '@nestjs/swagger';
 
@@ -18,7 +19,7 @@ export class ProductController {
     @ApiCreatedResponse({description: 'OK response.'})
     @ApiUnauthorizedResponse({description: 'Not provided, invalid or expired token.'})
     @ApiBadRequestResponse({description:'Bad request.'})
-    @ApiQuery({type: ProductFilterMagentoDto})
+    @ApiBody({type: ProductFilterMagentoDto})
     async getCategories(
         @Query() request: ProductFilterMagentoDto) {
         return await this.productService.getProductByCategoryID(request)

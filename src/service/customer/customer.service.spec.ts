@@ -1,5 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { CustomerFlowDto } from 'src/dto/dto_flow/customer/customer.flow.dto';
+import { ForgotPassword } from 'src/dto/dto_magento/customer/forgot.password.magento.dto';
+import { ResetPassword } from 'src/dto/dto_magento/customer/reset.password.magento.dto';
+import { CustomerFlowDto } from '../../dto/dto_flow/customer/customer.flow.dto';
 import { CustomerService } from './customer.service';
 
 describe('RegisterService', () => {
@@ -7,6 +9,8 @@ describe('RegisterService', () => {
   const mockCustomerService= {
     createCustomer:jest.fn(),
     getInfo: jest.fn(),
+    forgotPassword: jest.fn(),
+    resetPassword: jest.fn(),
   }
   const customer= {
     email: 'juanpan24@gmail.com',
@@ -14,6 +18,15 @@ describe('RegisterService', () => {
     lastName: 'Nuñez',
     dob: '24-09-1999',
     password: 'Password!',
+  }
+  const forgotPassword= {
+    "email": "juanpanm2409@gmail.com",
+    "template": "email_reset"
+  }
+  const resetPassword = {
+    "email": "juanpanm2409@gmail.com",
+    "resetToken": "ypoPzCldCO2gwbDirinPN9O5C4FUjUrU",
+    "newPassword":"Password2!"
   }
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -41,6 +54,18 @@ describe('RegisterService', () => {
     const spyCustomerService = jest
     .spyOn(customerservice, 'getInfo')
     await customerservice.getInfo('dkden8mlfwscsblgmvdxfr30duaoviht');
+    expect(spyCustomerService).toHaveBeenCalled;
+  });
+  it('should reset password', async () => {
+    const spyCustomerService = jest
+    .spyOn(customerservice, 'forgotPassword')
+    await customerservice.forgotPassword(forgotPassword as ForgotPassword);
+    expect(spyCustomerService).toHaveBeenCalled;
+  });
+  it('should change password', async () => {
+    const spyCustomerService = jest
+    .spyOn(customerservice, 'resetPassword')
+    await customerservice.resetPassword(resetPassword as ResetPassword);
     expect(spyCustomerService).toHaveBeenCalled;
   });
 });
